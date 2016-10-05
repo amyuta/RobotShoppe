@@ -65,7 +65,7 @@ void View::list_parts() {
 	cout << "----------------------------" << endl;
 //	for (int i = 0; i<library.number_of_publications(); ++i) {
 	//	cout << i << ") " << //library.publication_to_string(i) << endl;
-	}
+	//}
 }
 
 void View::show_robot() {
@@ -75,6 +75,6 @@ void View::show_robot() {
 	cout << "-----------------------" << endl;
 //	for (int i = 0; i<library.number_of_patrons(); ++i) {
 //		cout << i << ") " << library.patron_to_string(i) << endl;
-	}
+	//}
 }
 
