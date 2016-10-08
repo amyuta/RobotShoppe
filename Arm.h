@@ -1,7 +1,12 @@
 
 #ifndef Arm_h
 #define Arm_h
-#include "string"
+#include "view.h"
+#include "std_lib_facilities.h"
+#include "Head.h"
+#include "torso.h"
+#include "controller.h"
+#include "shoppe.h"
 
 class Arm {
 public:

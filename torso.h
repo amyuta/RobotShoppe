@@ -1,10 +1,12 @@
-#include <head.h>
-#include <arm.h>
-#include <locomotor.h>
-#include <battery.h>
-
 #ifndef TORSO_H
 #define TORSO_H
+
+#include "view.h"
+#include "std_lib_facilities.h"
+#include "Arm.h"
+#include "Head.h"
+#include "controller.h"
+#include "shoppe.h"
 
 class Torso {
     private:
@@ -28,4 +30,3 @@ class Torso {
  #endif
 
 
-#endif // TORSO_H

@@ -2,7 +2,12 @@
 
 #ifndef Head_h
 #define Head_h
-#include "string"
+#include "view.h"
+#include "std_lib_facilities.h"
+#include "Arm.h"
+#include "torso.h"'
+#include "contoller.h"
+#include "shoppe.h"
 
 class Head{
 public:
