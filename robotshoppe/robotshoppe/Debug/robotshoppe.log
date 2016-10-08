@@ -1,0 +1,34 @@
+﻿  view.cpp
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\head.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(22): error C3646: 'view': unknown override specifier
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(13): error C3861: 'View': identifier not found
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(13): error C2614: 'Controller': illegal member initialization: 'view' is not a base or member
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(16): error C2059: syntax error: ')'
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(22): error C2059: syntax error: 'switch'
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(22): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\head.h(9): fatal error C1083: Cannot open include file: 'contoller.h': No such file or directory
+  main.cpp
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\head.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(22): error C3646: 'view': unknown override specifier
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(13): error C3861: 'View': identifier not found
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(13): error C2614: 'Controller': illegal member initialization: 'view' is not a base or member
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(16): error C2059: syntax error: ')'
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(22): error C2059: syntax error: 'switch'
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(22): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\head.h(9): fatal error C1083: Cannot open include file: 'contoller.h': No such file or directory
+  controller.cpp
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\head.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(22): error C3646: 'view': unknown override specifier
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(22): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(13): error C3861: 'View': identifier not found
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\controller.h(13): error C2614: 'Controller': illegal member initialization: 'view' is not a base or member
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(16): error C2059: syntax error: ')'
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(22): error C2059: syntax error: 'switch'
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\torso.h(22): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+c:\users\aricela\documents\github\shoppe\robotshoppe\robotshoppe\head.h(9): fatal error C1083: Cannot open include file: 'contoller.h': No such file or directory
+  Generating Code...
