@@ -2,10 +2,6 @@
 #define __CONTROLLER_H
 
 #include "view.h"
-#include "std_lib_facilities.h"
-#include "Arm.h"
-#include "Head.h"
-#include "torso.h"'
 #include "shoppe.h"
 
 class Controller {
