@@ -1,10 +1,5 @@
-#include "view.h"
 #include "std_lib_facilities.h"
-#include "Arm.h"
-#include "Head.h"
-#include "torso.h"
 #include "controller.h"
-#include "shoppe.h"
 
 using namespace std;
 
@@ -28,9 +23,10 @@ void Controller::execute_cmd(int cmd) {
 	else if (cmd == 2) {
 		view.show_reportmenu();
 	}
-
+	else if(cmd == 9){
+       		 exit(1);
+    	}
 	
-
 	else {
 		view.show_mainmenu();
 	}
