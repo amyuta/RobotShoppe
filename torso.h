@@ -10,7 +10,7 @@ class Torso {
      int model;
 
     public:
-     Torso(int type) : model(type)) { }
+     Torso(int type) : model(type) { }
 
      static const int torso1 = 1;
      static const int torso2 = 2;

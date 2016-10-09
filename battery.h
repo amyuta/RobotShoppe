@@ -7,7 +7,7 @@ class Battery {
      int model;
 
     public:
-     Battery(int type) : model(type)) { }
+     Battery(int type) : model(type) { }
 
      static const int battery1 = 1;
      static const int battery2 = 2;
