@@ -1,9 +1,4 @@
 #include "view.h"
-#include "std_lib_facilities.h"
-#include "Arm.h"
-#include "Head.h"
-#include "torso.h"
-#include "controller.h"
 
 #include <iostream>
 #include <string>
