@@ -1,12 +1,9 @@
 #ifndef TORSO_H
 #define TORSO_H
 
-#include "view.h"
 #include "std_lib_facilities.h"
-#include "Arm.h"
-#include "Head.h"
-#include "controller.h"
 #include "shoppe.h"
+#include "string"
 
 class Torso {
     private:
@@ -19,12 +16,15 @@ class Torso {
      static const int torso2 = 2;
      static const int torso3 = 3;
 
+     string torso_string() {
        switch(model) {
          case(torso1):return "torso1";
          case(torso2):return "torso2";
          case(torso3):return "torso3";
+               default: return "IDK";
 
        }
+    }
 
  };
  #endif
