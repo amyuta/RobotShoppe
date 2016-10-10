@@ -5,26 +5,19 @@
 #include "shoppe.h"
 #include "string"
 
-class Torso {
+class Torso::public (RobotPart) {
     private:
      int model;
 
     public:
      Torso(int type) : model(type) { }
 
-     static const int torso1 = 1;
-     static const int torso2 = 2;
-     static const int torso3 = 3;
-
-     string torso_string() {
-       switch(model) {
-         case(torso1):return "torso1";
-         case(torso2):return "torso2";
-         case(torso3):return "torso3";
-               default: return "IDK";
-
-       }
-    }
+	 int part_num;
+	 string type;
+	 double weight;
+	 double cost;
+	 string description;
+	 int torso_count;
 
  };
  #endif

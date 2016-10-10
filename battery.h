@@ -1,7 +1,9 @@
 #ifndef BATTERY_H
 #define BATTERY_H
 
-class Battery {
+#include "std_lib_facilities.h"
+
+class Battery::public (RobotPart) {
     private:
      double energy;
      int model;
@@ -9,16 +11,12 @@ class Battery {
     public:
      Battery(int type) : model(type) { }
 
-     static const int battery1 = 1;
-     static const int battery2 = 2;
-     static const int battery3 = 3;
-
-       switch(model) {
-         case(battery1):return "battery1";
-         case(battery2):return "battery2";
-         case(battery3):return "battery3";
-
-       }
+	 int part_num;
+	 string type;
+	 double weight;
+	 double cost;
+	 string description;
+	 int batt_count;
 
  };
 

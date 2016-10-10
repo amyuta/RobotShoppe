@@ -16,18 +16,20 @@ void Shoppe::add_sa(SalesAssociate sa) {
   sales_associates.push_back(sa);
 }
 
-int Library::num_of_models() {
+/*
+int Shoppe::num_of_models() {
   return robot_models.size();
 }
 
-int Library::num_of_orders() {
+int Shoppe::num_of_orders() {
   return orders.size();
 }
 
-int Library::num_of_customers() {
+int Shoppe::num_of_customers() {
   return customers.size();
 }
 
-int Library::num_of_sas() {
+int Shoppe::num_of_sas() {
   return sales_associates.size();
 }
+*/

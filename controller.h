@@ -13,6 +13,7 @@ public:
 	void new_customer();
 	void place_order();
 	void run_report();
+	void execute_createnewpart(int cmd);
 private:
 	Shoppe& shoppe;
 	View view;

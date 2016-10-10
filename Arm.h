@@ -5,25 +5,17 @@
 #include "std_lib_facilities.h"
 
 
-class Arm {
+class Arm::public (RobotPart) {
 public:
     Arm(int arm_val) : arm_type(arm_val) {}
     
-    static const int arm1 = 1;
-    static const int arm2 = 2;
-    static const int arm3 = 3;
-    
-    static const int num_arms = 3;
-    
-    string arm_string() {
-        switch(arm_type) {
-            case(arm1):return "Arm1";
-            case(arm2):return "Arm2";
-            case(arm3):return "Arm3";
-            default: return "IDK";
-        }
-    }
-    
+	int part_num;
+	string type;
+	double weight;
+	double cost;
+	string description;
+	int arm_count;
+       
     int power_consumed(int speed);
     //Need to create .cpp file for power_consumed method
     

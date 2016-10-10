@@ -2,25 +2,19 @@
 #ifndef Locomoter_h
 #define Locomoter_h
 #include "string"
+#include "std_lib_facilities.h"
 
-class Locomoter {
+class Locomoter::public (RobotPart) {
 public:
     Locomoter(int loco_val) : loco_type(loco_val) {}
     
-    static const int loco1 = 1;
-    static const int loco2 = 2;
-    static const int loco3 = 3;
-    
-    static const int loco_num = 3;
-    
-    string loco_string() {
-        switch(loco_type) {
-            case(loco1):return "Loco1";
-            case(loco2):return "Loco2";
-            case(loco3):return "Loco3";
-            default: return "IDK";
-        }
-    }
+
+	int loco_count;
+	int part_num;
+	string type;
+	double weight;
+	double cost;
+	string description;
     
     double find_maxspeed();
     double find_powerconsumed();
