@@ -1,7 +1,17 @@
 #include "std_lib_facilities.h"
 #include "controller.h"
 #include "RobotPart.h"
+#include "shoppe.h"
+#include "Head.h"
+#include "torso.h"
+#include "Arm.h"
+#include "Locomotor.h"
+#include "battery.h"
+#include "order.h"
+#include "sales_associate.h"
+#include "customer.h"
 
+#include <iostream>
 using namespace std;
 
 void Controller::cli() {
@@ -21,8 +31,10 @@ void Controller::execute_cmd(int cmd) {
 		cout << "Command? ";
 		cin >> cmd;
 		cin.ignore(); // consume \n
-		;
-
+        
+        if(cmd == 5){
+            execute_createnewpart(cmd);
+        }
 	}
 
 	else if (cmd == 2) {
@@ -40,10 +52,11 @@ void Controller::execute_cmd(int cmd) {
 void Controller::execute_createnewpart(int cmd) {
 	int type, part_num, power, batt_count, max_speed, energy;
 	double weight, cost;
-	string descrip;
+	string descrip, type_name;
 
-	if (cmd == 5) {
-		cout << "First select the part type.\n(1) Head\n(2) Arm\n(3) Battery\n (4) Locomotor\n(5) Torso\n\n";
+
+		cout << "First select the part type.\n(1) Head\n(2) Arm\n(3) Battery\n(4) Locomotor\n(5) Torso\n\n";
+        cout << "Command? ";
 		cin >> type;
 		cin.ignore();
 
@@ -60,8 +73,10 @@ void Controller::execute_createnewpart(int cmd) {
 			cin.ignore();
 			cout << "Description: ";
 			getline(cin, descrip);
+            
+            type_name = "Head";
 
-			create_head(part_num, weight, cost, descrip);
+            shoppe.create_newpart(new Head(part_num, type_name, weight, cost, descrip), 1);
 
 		}
 
@@ -81,8 +96,10 @@ void Controller::execute_createnewpart(int cmd) {
 			cin.ignore();
 			cout << "Description: ";
 			getline(cin, descrip);
+            
+            type_name = "Arm";
 
-			create_arm(part_num, weight, cost, power, descrip);
+            shoppe.create_newpart(new Arm(part_num, type_name, weight, cost, descrip, power), 2);
 
 		}
 
@@ -102,8 +119,11 @@ void Controller::execute_createnewpart(int cmd) {
 			cin.ignore();
 			cout << "Description: ";
 			getline(cin, descrip);
+            
+            type_name = "Battery";
+            
+            shoppe.create_newpart(new Battery(part_num, type_name, weight, cost, descrip, energy), 3);
 
-			create_battery(part_num, weight, cost, energy, descrip);
 
 		}
 
@@ -127,7 +147,9 @@ void Controller::execute_createnewpart(int cmd) {
 			cout << "Description: ";
 			getline(cin, descrip);
 
-			create_loco(part_num, weight, cost, power, max_speed, descrip);
+            type_name = "Locomotor";
+            
+            shoppe.create_newpart(new Locomotor(part_num, type_name, weight, cost, descrip, power, max_speed), 4);
 
 
 		}
@@ -149,10 +171,11 @@ void Controller::execute_createnewpart(int cmd) {
 			cout << "Description: ";
 			getline(cin, descrip);
 
-			create_battery(part_num, weight, cost, batt_count, descrip);
-
+            type_name = "Torso";
+            
+            shoppe.create_newpart(new Torso(part_num, type_name, weight, cost, descrip, batt_count), 5);
 
 		}
-	}
+	
 }
 

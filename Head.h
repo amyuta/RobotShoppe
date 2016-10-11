@@ -5,19 +5,15 @@
 
 #include "std_lib_facilities.h"
 #include "shoppe.h"
+#include "RobotPart.h"
 
-class Head::public (RobotPart) {
+class Head: public RobotPart {
 public:
-    Head(int head_val) : head_type(head_val) {}
+    Head(int part_num, string type, double weight, double cost, string description) : RobotPart(part_num, type, weight, cost, description){}
     
-	int part_num;
-	string type;
-	double weight;
-	double cost;
-	string description;
-	int head_count;
 
-private:
-    int head_type;
+protected:
+    int head_count;
+    
 };
 #endif /* Head_h */

@@ -1,6 +1,7 @@
 #ifndef ROBOT_MODEL_H
 #define ROBOT_MODEL_H
 #include "std_lib_facilities.h"
+#include "RobotPart.h"
 
 class Robot_Model {
 public:
@@ -14,6 +15,7 @@ private:
     string name;
     int model_num;
     double price;
-	vector<Robot_Part> parts;
+	//vector<RobotPart> parts;
+    
 };
 #endif // ROBOT_MODEL_H

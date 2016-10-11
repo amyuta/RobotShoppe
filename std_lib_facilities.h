@@ -41,7 +41,7 @@ namespace __gnu_cxx {
 	{
 		size_t operator()(const std::string& s) const
 		{
-			return hash<char*>()(s.c_str());
+			return hash<const char*>()(s.c_str());
 		}
 	};
 

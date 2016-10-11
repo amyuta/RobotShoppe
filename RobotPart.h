@@ -1,35 +1,26 @@
 #ifndef __ROBOTPART_H
 #define __ROBOTPART_H 
 
-//#include "std_lib_facilities.h"
 #include "vector"
 #include "string"
-#include "shoppe.h"
-#include "Head.h"
 
+using namespace std;
 
-class RobotPart::public RobotModel {
+class RobotPart {
 	
-private:
-
+protected:
+    int p_num;
+    string p_type;
+    double p_weight;
+    double p_cost;
+    string p_description;
+    
 public:
-
-	vector<Torso> torsos;
-	vector<Locomoter> locos;
-	vector<Head> heads;
-	vector<Battery> batterys;
-	vector<Arm> arms;
-
-	void create_head(int part_num, double weight, double cost, string descrip);
-	void create_arm(int part_num, double weight, double cost, int power, string descrip);
-	void create_battery(int part_num, double weight, double cost, int energy, string descrip);
-	void create_loco(int part_num, double weight, double cost, int power, int max_speed, string descrip);
-	void create_battery(int part_num, double weight, double cost, int batt_count, string descrip);
+    RobotPart(int part_num, string type, double weight, double cost, string description) : p_num(part_num), p_type(type), p_weight(weight), p_cost(cost), p_description(description) {}
+    
+    
 
 
 
-
-
-
-}
+};
 #endif

@@ -4,20 +4,21 @@
 #include "std_lib_facilities.h"
 #include "shoppe.h"
 #include "string"
+#include "RobotPart.h"
 
-class Torso::public (RobotPart) {
-    private:
-     int model;
+class Torso:public RobotPart {
+    protected:
+    int p_battcount;
+    
 
     public:
-     Torso(int type) : model(type) { }
+     Torso(int part_num, string type, double weight, double cost, string description, int batt_count) : p_battcount(batt_count), RobotPart(part_num, type, weight, cost, description){}
 
-	 int part_num;
-	 string type;
-	 double weight;
-	 double cost;
-	 string description;
-	 int torso_count;
+
+
+    
+    
+    
 
  };
  #endif
