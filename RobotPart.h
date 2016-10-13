@@ -10,16 +10,17 @@ class RobotPart {
 	
 protected:
     int p_num;
-    string p_type;
     double p_weight;
     double p_cost;
     string p_description;
+    int p_quantity;
     
 public:
-    RobotPart(int part_num, string type, double weight, double cost, string description) : p_num(part_num), p_type(type), p_weight(weight), p_cost(cost), p_description(description) {}
+    RobotPart(int part_num, double weight, double cost, string description, int quantity) : p_num(part_num), p_weight(weight), p_cost(cost), p_description(description), p_quantity(quantity) {}
     
     
-
+    void list_all();
+    void add_quan(int part_num, int quantity);
 
 
 };

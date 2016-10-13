@@ -1,7 +1,7 @@
 #ifndef BATTERY_H
 #define BATTERY_H
 
-#include "std_lib_facilities.h"
+//#include "std_lib_facilities.h"
 #include "RobotPart.h"
 
 class Battery : public RobotPart {
@@ -11,7 +11,7 @@ class Battery : public RobotPart {
     int batt_count;
 
     public:
-     Battery(int part_num, string type, double weight, double cost, string description, int energy) : p_energy(energy), RobotPart(part_num, type, weight, cost, description){}
+     Battery(int part_num, double weight, double cost, string description, int energy, int quantity) : p_energy(energy), RobotPart(part_num, weight, cost, description, quantity){}
 
 	 
 

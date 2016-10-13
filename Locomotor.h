@@ -2,13 +2,13 @@
 #ifndef Locomotor_h
 #define Locomotor_h
 #include "string"
-#include "std_lib_facilities.h"
+//#include "std_lib_facilities.h"
 #include "RobotPart.h"
 
 class Locomotor:public RobotPart {
       
 public:
-    Locomotor(int part_num, string type, double weight, double cost, string description, int power, int max_speed) : p_power(power), p_maxspeed(max_speed), RobotPart(part_num, type, weight, cost, description){}
+    Locomotor(int part_num, double weight, double cost, string description, int power, int max_speed, int quantity) : p_power(power), p_maxspeed(max_speed), RobotPart(part_num, weight, cost, description, quantity){}
 
     
     double find_maxspeed();

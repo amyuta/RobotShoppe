@@ -1,6 +1,9 @@
 #ifndef ORDER_H
 #define ORDER_H
-#include "std_lib_facilities.h"
+//#include "std_lib_facilities.h"
+#include<string>
+
+using namespace std;
 
 class Order {
 public:

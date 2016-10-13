@@ -1,9 +1,8 @@
 #ifndef TORSO_H
 #define TORSO_H
 
-#include "std_lib_facilities.h"
+//#include "std_lib_facilities.h"
 #include "shoppe.h"
-#include "string"
 #include "RobotPart.h"
 
 class Torso:public RobotPart {
@@ -12,7 +11,7 @@ class Torso:public RobotPart {
     
 
     public:
-     Torso(int part_num, string type, double weight, double cost, string description, int batt_count) : p_battcount(batt_count), RobotPart(part_num, type, weight, cost, description){}
+     Torso(int part_num, double weight, double cost, string description, int batt_count, int quantity) : p_battcount(batt_count), RobotPart(part_num, weight, cost, description, quantity){}
 
 
 

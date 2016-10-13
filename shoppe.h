@@ -1,7 +1,7 @@
 #ifndef SHOPPE_H
 #define SHOPPE_H
 
-#include "std_lib_facilities.h"
+//#include "std_lib_facilities.h"
 #include "robot_model.h"
 #include "order.h"
 #include "customer.h"
@@ -17,6 +17,9 @@ public:
     //void add_customer(Customer customer);
     //void add_sa(SalesAssociate sa);
     void create_newpart(RobotPart* part, int type);
+    void list_parts(int type);
+    void add_to_parts(int type, int quantity, int part_num);
+    void save_info();
 
     int num_of_models;
     int num_of_orders;
@@ -30,7 +33,6 @@ private:
 	//vector<Customer> customers;
 	//vector<SalesAssociate> sales_associates;
 
-    // Different vectors for different parts... so then we can have multiple variations of each part
     vector<RobotPart*> head;
     vector<RobotPart*> torso;
     vector<RobotPart*> battery;

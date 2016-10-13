@@ -1,4 +1,4 @@
-#include "std_lib_facilities.h"
+//#include "std_lib_facilities.h"
 #include "controller.h"
 #include "RobotPart.h"
 #include "shoppe.h"
@@ -12,6 +12,8 @@
 #include "customer.h"
 
 #include <iostream>
+#include<fstream>
+#include<string>
 using namespace std;
 
 void Controller::cli() {
@@ -25,7 +27,7 @@ void Controller::cli() {
 	}
 }
 
-void Controller::execute_cmd(int cmd) {
+/*void Controller::execute_cmd(int cmd) {
 	if (cmd == 1) { // Create new
 		view.show_createmenu();
 		cout << "Command? ";
@@ -39,7 +41,7 @@ void Controller::execute_cmd(int cmd) {
 
 	else if (cmd == 2) {
 		view.show_reportmenu();
-	}
+    }
 	else if(cmd == 9){
        		 exit(1);
     	}
@@ -47,18 +49,88 @@ void Controller::execute_cmd(int cmd) {
 	else {
 		view.show_mainmenu();
 	}
+}*/
+
+void Controller:: execute_cmd(int cmd) {
+    
+    if (cmd == 1) {
+        view.show_pmmenu();
+        cout << "Command? ";
+        cin >> cmd;
+        cin.ignore(); // consume \n
+        
+        if(cmd == 1){
+            execute_createnewpart(cmd);
+        }
+        else if (cmd == 2){
+            
+        }
+        else if (cmd == 9) {
+            view.show_mainmenu();
+        }
+        else {
+            view.show_pmmenu();
+        }
+    }
+    else if (cmd == 2) {
+        view.show_bcmenu();
+        cout << "Command? ";
+        cin >> cmd;
+        cin.ignore(); // consume \n
+        
+        if(cmd == 9){
+            view.show_mainmenu();
+        }
+    }
+    else if (cmd == 3) {
+        view.show_samenu();
+        cout << "Command? ";
+        cin >> cmd;
+        cin.ignore(); // consume \n
+        
+        if(cmd == 9){
+            view.show_mainmenu();
+        }
+    }
+    else if (cmd == 4) {
+        view.show_pbmenu();
+        cout << "Command? ";
+        cin >> cmd;
+        cin.ignore(); // consume \n
+        
+        if (cmd == 8) {
+            shoppe.save_info();
+        }
+        else if(cmd == 9){
+            view.show_mainmenu();
+        }
+    }
+    else if (cmd == 9) {
+        exit(1);
+    }
+    else {
+        view.show_mainmenu();
+    }
+    
 }
 
 void Controller::execute_createnewpart(int cmd) {
-	int type, part_num, power, batt_count, max_speed, energy;
+	int type, option, part_num, power, batt_count, max_speed, energy, quantity, add_part;
 	double weight, cost;
 	string descrip, type_name;
 
-
-		cout << "First select the part type.\n(1) Head\n(2) Arm\n(3) Battery\n(4) Locomotor\n(5) Torso\n\n";
+    cout<< "\n(1) Create New Part\n(2) Add to Existing Part\n\n";
+    cout<< "Command? ";
+    cin>>option;
+    cin.ignore();
+    
+    
+    if(option == 1){
+		cout << "\nFirst select the part type.\n(1) Head\n(2) Arm\n(3) Battery\n(4) Locomotor\n(5) Torso\n\n";
         cout << "Command? ";
 		cin >> type;
 		cin.ignore();
+        cout << endl;
 
 		if (type == 1) {
 			cout << "Please enter the following details about the Head.\n";
@@ -70,13 +142,15 @@ void Controller::execute_createnewpart(int cmd) {
 			cin.ignore();
 			cout << "Cost ($): ";
 			cin >> cost;
+            cin.ignore();
+            cout << "Quantity: ";
+            cin >> quantity;
 			cin.ignore();
 			cout << "Description: ";
 			getline(cin, descrip);
             
-            type_name = "Head";
 
-            shoppe.create_newpart(new Head(part_num, type_name, weight, cost, descrip), 1);
+            shoppe.create_newpart(new Head(part_num, weight, cost, descrip, quantity), 1);
 
 		}
 
@@ -90,6 +164,9 @@ void Controller::execute_createnewpart(int cmd) {
 			cin.ignore();
 			cout << "Cost ($): ";
 			cin >> cost;
+            cin.ignore();
+            cout << "Quantity: ";
+            cin >> quantity;
 			cin.ignore();
 			cout << "Power (Watts): ";
 			cin >> power;
@@ -97,9 +174,9 @@ void Controller::execute_createnewpart(int cmd) {
 			cout << "Description: ";
 			getline(cin, descrip);
             
-            type_name = "Arm";
+           
 
-            shoppe.create_newpart(new Arm(part_num, type_name, weight, cost, descrip, power), 2);
+            shoppe.create_newpart(new Arm(part_num, weight, cost, descrip, power, quantity), 2);
 
 		}
 
@@ -114,15 +191,18 @@ void Controller::execute_createnewpart(int cmd) {
 			cout << "Cost ($): ";
 			cin >> cost;
 			cin.ignore();
-			cout << "Energy (KWHr: ";
+            cout << "Quantity: ";
+            cin >> quantity;
+            cin.ignore();
+			cout << "Energy (KWHr): ";
 			cin >> energy;
 			cin.ignore();
 			cout << "Description: ";
 			getline(cin, descrip);
             
-            type_name = "Battery";
             
-            shoppe.create_newpart(new Battery(part_num, type_name, weight, cost, descrip, energy), 3);
+            
+            shoppe.create_newpart(new Battery(part_num, weight, cost, descrip, energy, quantity), 3);
 
 
 		}
@@ -138,6 +218,9 @@ void Controller::execute_createnewpart(int cmd) {
 			cout << "Cost ($): ";
 			cin >> cost;
 			cin.ignore();
+            cout << "Quantity: ";
+            cin >> quantity;
+            cin.ignore();
 			cout << "Power (Watts): ";
 			cin >> power;
 			cin.ignore();
@@ -147,9 +230,9 @@ void Controller::execute_createnewpart(int cmd) {
 			cout << "Description: ";
 			getline(cin, descrip);
 
-            type_name = "Locomotor";
+        
             
-            shoppe.create_newpart(new Locomotor(part_num, type_name, weight, cost, descrip, power, max_speed), 4);
+            shoppe.create_newpart(new Locomotor(part_num,weight, cost, descrip, power, max_speed, quantity), 4);
 
 
 		}
@@ -165,17 +248,57 @@ void Controller::execute_createnewpart(int cmd) {
 			cout << "Cost ($): ";
 			cin >> cost;
 			cin.ignore();
+            cout << "Quantity: ";
+            cin >> quantity;
+            cin.ignore();
 			cout << "Battery Component Count: ";
 			cin >> batt_count;
 			cin.ignore();
 			cout << "Description: ";
 			getline(cin, descrip);
 
-            type_name = "Torso";
+    
             
-            shoppe.create_newpart(new Torso(part_num, type_name, weight, cost, descrip, batt_count), 5);
+            shoppe.create_newpart(new Torso(part_num, weight, cost, descrip, batt_count, quantity), 5);
 
 		}
+    }
+    else if(option == 2){
+        
+        cout << "\n\nFirst select the part type you wish to add to.\n(1) Head\n(2) Arm\n(3) Battery\n(4) Locomotor\n(5) Torso\n\n";
+        cout << "Command? ";
+        cin >> type;
+        cin.ignore();
+        cout << endl;
+        
+        if(type == 1 || type == 2 || type == 3 || type == 4 || type == 5){
+            
+            view.list_parts();
+            shoppe.list_parts(type);
+            cout << "\nPart Number you wish to add to: ";
+            cin >> add_part;
+            cin.ignore();
+            cout << "Quantity: ";
+            cin >> quantity;
+            cin.ignore();
+            
+            shoppe.add_to_parts(type, quantity, add_part);
+   
+        }
+        
+        
+    }
+    
+    execute_cmd(1);
 	
 }
+
+
+
+
+
+
+
+
+
 
