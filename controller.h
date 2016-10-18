@@ -19,8 +19,13 @@ public:
     void load_data();
 private:
 	Shoppe& shoppe;
+<<<<<<< HEAD
 	View view;
 	//Customer customer;
+=======
+	View view;
+	Customer customer;
+>>>>>>> origin/View
 };
 #endif
 #pragma once

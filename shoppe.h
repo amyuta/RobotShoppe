@@ -14,7 +14,11 @@ class Shoppe {
 public:
 	void add_new_model(Robot_Model model, RobotPart head, RobotPart arm, RobotPart battery, RobotPart loco, RobotPart torso);
     void add_order(Order order);
+<<<<<<< HEAD
     void add_customer(Customer* customer);
+=======
+    void add_customer(Customer customer);
+>>>>>>> origin/View
     //void add_sa(SalesAssociate sa);
     void create_newpart(RobotPart* part, int type);
     void list_parts(int type);
@@ -37,7 +41,11 @@ public:
 private:
 	vector<Robot_Model> robot_models;
 	vector<Order> orders;
+<<<<<<< HEAD
 	vector<Customer*> customers;
+=======
+	vector<Customer> customers;
+>>>>>>> origin/View
 	//vector<SalesAssociate> sales_associates;
 
     vector<RobotPart*> head;

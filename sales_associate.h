@@ -1,9 +1,12 @@
 #ifndef SALES_ASSOCIATE_H
 #define SALES_ASSOCIATE_H
 
+<<<<<<< HEAD
 #include <string>
 using namespace std;
 
+=======
+>>>>>>> origin/View
 class SalesAssociate {
 
 public:

@@ -1,9 +1,12 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
+<<<<<<< HEAD
 #include <string>
 using namespace std;
 
+=======
+>>>>>>> origin/View
 class Customer {
 
 public:
