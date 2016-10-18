@@ -1,3 +1,4 @@
 #include "customer.h"
 
-//code for customer.cpp here
+ string Customer::get_customer_name() {return name;}
+ int Customer::get_customer_number() {return number;}

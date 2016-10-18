@@ -1,4 +1,4 @@
-//#include "std_lib_facilities.h"
+#include "std_lib_facilities.h"
 #include "controller.h"
 #include "RobotPart.h"
 #include "shoppe.h"
@@ -28,13 +28,13 @@ void Controller::cli() {
 }
 
 void Controller:: execute_cmd(int cmd) {
-    
+
     if (cmd == 1) {
         view.show_pmmenu();
         cout << "Command? ";
         cin >> cmd;
         cin.ignore(); // consume \n
-        
+
         if(cmd == 1){
             execute_createnewpart(cmd);
         }
@@ -53,13 +53,13 @@ void Controller:: execute_cmd(int cmd) {
         cout << "Command? ";
         cin >> cmd;
         cin.ignore(); // consume \n
-        
+
         if(cmd == 9){
             view.show_mainmenu();
         }
         else if(cmd == 1){
             execute_showrobotmodels();
-            
+
         }
     }
     else if (cmd == 3) {
@@ -67,9 +67,12 @@ void Controller:: execute_cmd(int cmd) {
         cout << "Command? ";
         cin >> cmd;
         cin.ignore(); // consume \n
-        
+
         if(cmd == 9){
             view.show_mainmenu();
+        }
+        else if (cmd == 1) {
+            new_customer();
         }
     }
     else if (cmd == 4) {
@@ -77,7 +80,7 @@ void Controller:: execute_cmd(int cmd) {
         cout << "Command? ";
         cin >> cmd;
         cin.ignore(); // consume \n
-        
+
         if (cmd == 8) {
             shoppe.save_info();
         }
@@ -86,7 +89,7 @@ void Controller:: execute_cmd(int cmd) {
         }
     }
     else if(cmd == 5){
-        
+
         cout<< "Loading my a$$\n";
         load_data();
     }
@@ -96,27 +99,27 @@ void Controller:: execute_cmd(int cmd) {
     else {
         view.show_mainmenu();
     }
-    
+
 }
 
 void Controller::execute_createnewpart(int cmd) {
     int type, option, part_num, power, batt_count, max_speed, energy, quantity, add_part;
     double weight, cost;
     string descrip, type_name;
-    
+
     cout<< "\n(1) Create New Part\n(2) Add to Existing Part\n\n";
     cout<< "Command? ";
     cin>>option;
     cin.ignore();
-    
-    
+
+
     if(option == 1){
         cout << "\nFirst select the part type.\n(1) Head\n(2) Arm\n(3) Battery\n(4) Locomotor\n(5) Torso\n\n";
         cout << "Command? ";
         cin >> type;
         cin.ignore();
         cout << endl;
-        
+
         if (type == 1) {
             cout << "Please enter the following details about the Head.\n";
             cout << "Part #: ";
@@ -133,23 +136,23 @@ void Controller::execute_createnewpart(int cmd) {
             cin.ignore();
             cout << "Description: ";
             getline(cin, descrip);
-            
+
             shoppe.create_newpart(new Head(part_num, weight, cost, descrip, quantity), 1);
-            
+
             ofstream ofs;
             ofs.open("heads.txt", ofstream::out | ofstream::app);
-            
+
             ofs << part_num << endl;
             ofs << weight << endl;
             ofs << cost << endl;
             ofs << quantity << endl;
             ofs << descrip << endl;
-            
+
             ofs.close();
-            
-            
+
+
         }
-        
+
         if (type == 2) {
             cout << "Please enter the following details about the Arm.\n";
             cout << "Part #: ";
@@ -169,22 +172,22 @@ void Controller::execute_createnewpart(int cmd) {
             cin.ignore();
             cout << "Description: ";
             getline(cin, descrip);
-            
+
             shoppe.create_newpart(new Arm(part_num, weight, cost, descrip, power, quantity), 2);
-            
+
             ofstream ofs;
             ofs.open("arms.txt", ofstream::out | ofstream::app);
-            
+
             ofs << part_num << endl;
             ofs << weight << endl;
             ofs << cost << endl;
             ofs << power << endl;
             ofs << quantity << endl;
 			ofs << descrip << endl;
-            
+
             ofs.close();
         }
-        
+
         if (type == 3) {
             cout << "Please enter the following details about the Battery.\n";
             cout << "Part #: ";
@@ -204,22 +207,22 @@ void Controller::execute_createnewpart(int cmd) {
             cin.ignore();
             cout << "Description: ";
             getline(cin, descrip);
-            
+
             shoppe.create_newpart(new Battery(part_num, weight, cost, descrip, energy, quantity), 3);
-            
+
             ofstream ofs;
             ofs.open("batteries.txt", ofstream::out | ofstream::app);
-            
+
             ofs << part_num << endl;
             ofs << weight << endl;
             ofs << cost << endl;
             ofs << energy << endl;
             ofs << quantity << endl;
 			ofs << descrip << endl;
-            
+
             ofs.close();
         }
-        
+
         if (type == 4) {
             cout << "Please enter the following details about the Locomotor.\n";
             cout << "Part #: ";
@@ -242,12 +245,12 @@ void Controller::execute_createnewpart(int cmd) {
             cin.ignore();
             cout << "Description: ";
             getline(cin, descrip);
-            
+
             shoppe.create_newpart(new Locomotor(part_num,weight, cost, descrip, power, max_speed, quantity), 4);
-            
+
             ofstream ofs;
             ofs.open("locomotors.txt", ofstream::out | ofstream::app);
-            
+
             ofs << part_num << endl;
             ofs << weight << endl;
             ofs << cost << endl;
@@ -255,10 +258,10 @@ void Controller::execute_createnewpart(int cmd) {
             ofs << max_speed << endl;
             ofs << quantity << endl;
 			ofs << descrip << endl;
-            
+
             ofs.close();
         }
-        
+
         if (type == 5) {
             cout << "Please enter the following details about the Torso.\n";
             cout << "Part #: ";
@@ -278,32 +281,32 @@ void Controller::execute_createnewpart(int cmd) {
             cin.ignore();
             cout << "Description: ";
             getline(cin, descrip);
-            
+
             shoppe.create_newpart(new Torso(part_num, weight, cost, descrip, batt_count, quantity), 5);
-            
+
             ofstream ofs;
             ofs.open("torsos.txt", ofstream::out | ofstream::app);
-            
+
             ofs << part_num << endl;
             ofs << weight << endl;
             ofs << cost << endl;
             ofs << batt_count << endl;
             ofs << quantity << endl;
 			ofs << descrip << endl;
-            
+
             ofs.close();
         }
     }
     else if(option == 2){
-        
+
         cout << "\n\nFirst select the part type you wish to add to.\n(1) Head\n(2) Arm\n(3) Battery\n(4) Locomotor\n(5) Torso\n\n";
         cout << "Command? ";
         cin >> type;
         cin.ignore();
         cout << endl;
-        
+
         if(type == 1 || type == 2 || type == 3 || type == 4 || type == 5){
-            
+
             view.list_parts();
             shoppe.list_parts(type);
             cout << "\nPart Number you wish to add to: ";
@@ -312,93 +315,107 @@ void Controller::execute_createnewpart(int cmd) {
             cout << "Quantity: ";
             cin >> quantity;
             cin.ignore();
-            
+
             shoppe.add_to_parts(type, quantity, add_part);
-            
+
         }
-        
-        
+
+
     }
-    
+
     execute_cmd(1);
 }
 
 
 void Controller::execute_createrobotmodel(){
-    
+
     int part_type1, part_type2, part_type3, part_type4, part_type5, model_num, command;
     string model_name;
     bool makepart;
-    
+
     cout << "Enter Model Name: \n";
     getline(cin, model_name);
-    
+
     cout << "Enter Model Number: \n";
     cin >> model_num;
     cin.ignore();
-    
+
     view.list_parts();
     cout << "Chose a Head: \n";
     shoppe.list_parts(1);
     cin >> part_type1;
     cin.ignore();
-    
+
     cout << "\nChose an Arm: \n";
     shoppe.list_parts(2);
     cin >> part_type2;
     cin.ignore();
-    
+
     //Maybe ask, How many batteries.. instead?
     cout << "\nChose a Battery: \n";
     shoppe.list_parts(3);
     cin >> part_type3;
     cin.ignore();
-    
+
     cout << "\nChose a Locomotor: \n";
     shoppe.list_parts(4);
     cin >> part_type4;
     cin.ignore();
-    
+
     cout << "\nChose a Torso: \n";
     shoppe.list_parts(5);
     cin >> part_type5;
     cin.ignore();
-    
+
     makepart = shoppe.check_parts(part_type3, part_type5, part_type2);
-    
+
     if(makepart){
         shoppe.make_model(part_type1-1, part_type2-1, part_type3-1, part_type4-1, part_type5-1, model_num, model_name);
         cout << "Model Created.\n";
     }
     else{
-        
+
         cout << "Not enough parts to make model.\n";
         cout << "(1) Main Menu\n";
         cout << "(2) Create Menu\n";
         cout << "Command? ";
         cin >> command;
         cin.ignore();
-        
+
         if(command == 1){
             cli();
         }
         else if(command == 2){
             execute_cmd(1);
         }
-        
+
     }
-    
-    
-    
+}
+
+void Controller::new_customer(){
+
+    string c_name;
+    int c_num;
+
+     cout << "Enter Customer Name: \n";
+    getline(cin, c_name);
+
+    cout << "Enter Customer Number: \n";
+    cin >> c_num;
+    cin.ignore();
+
+    customer(c_name, c_num);
+    shoppe.add_customer(customer);
+
 }
 
 void Controller::execute_showrobotmodels(){
-    
+
     view.list_parts();
     shoppe.show_models();
-    
-    
-    
+
+
+
 }
 
 
@@ -421,7 +438,7 @@ void Controller::load_data() {
         getline(ifshead, temp);
         quantity = stoi(temp);
         getline(ifshead, descrip);
-        
+
         shoppe.create_newpart(new Head(part_num, weight, cost, descrip, quantity), 1);
     }
 	ifshead.close();

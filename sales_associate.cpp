@@ -1,3 +1,4 @@
 #include "sales_associate.h"
 
-//code for sales_associate.cpp here
+ string SalesAssociate::get_sa_name() {return name;}
+ int SalesAssociate::get_sa_number() {return number;}
