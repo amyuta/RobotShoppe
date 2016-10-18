@@ -1,4 +1,3 @@
-#include "std_lib_facilities.h"
 #include "controller.h"
 #include "RobotPart.h"
 #include "shoppe.h"
@@ -70,9 +69,6 @@ void Controller:: execute_cmd(int cmd) {
 
         if(cmd == 9){
             view.show_mainmenu();
-        }
-        else if (cmd == 1) {
-            new_customer();
         }
         else if (cmd == 1) {
             new_customer();
@@ -393,7 +389,6 @@ void Controller::execute_createrobotmodel(){
         }
 
     }
-<<<<<<< HEAD
 }
 
 void Controller::new_customer(){
@@ -401,21 +396,11 @@ void Controller::new_customer(){
     string c_name;
     int c_num;
 
-=======
-}
-
-void Controller::new_customer(){
-
-    string c_name;
-    int c_num;
-
->>>>>>> origin/View
      cout << "Enter Customer Name: \n";
     getline(cin, c_name);
 
     cout << "Enter Customer Number: \n";
     cin >> c_num;
-<<<<<<< HEAD
     cin.ignore();
 
     shoppe.add_customer( new Customer(c_name, c_num));
@@ -428,13 +413,6 @@ void Controller::new_customer(){
 
     ofs.close();
 
-=======
-    cin.ignore();
-
-    customer(c_name, c_num);
-    shoppe.add_customer(customer);
-
->>>>>>> origin/View
 }
 
 void Controller::execute_showrobotmodels(){

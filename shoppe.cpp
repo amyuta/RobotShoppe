@@ -200,15 +200,7 @@ void Shoppe:: show_models(){
 void Shoppe::add_order(Order order) {
   orders.push_back(order);
 }
-<<<<<<< HEAD
 
-=======
-
-
-void Shoppe::add_customer(Customer customer) {
-  customers.push_back(customer);
-}
->>>>>>> origin/View
 
 void Shoppe::add_customer(Customer* customer) {
   customers.push_back(customer);
@@ -217,7 +209,7 @@ void Shoppe::add_customer(Customer* customer) {
 void Shoppe::add_sa(SalesAssociate sa) {
   sales_associates.push_back(sa);
 }
-
+*/
 
 /*
 int Shoppe::num_of_models() {
