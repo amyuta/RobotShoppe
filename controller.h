@@ -20,6 +20,7 @@ public:
 private:
 	Shoppe& shoppe;
 	View view;
+	//Customer customer;
 };
 #endif
 #pragma once

@@ -18,7 +18,7 @@ using namespace std;
 	cout << "(3) Save" << endl;
 	cout << "(9) Exit Shoppe" << endl;
 	cout << endl;
-	
+
 }
  */
 
@@ -39,7 +39,7 @@ void View:: show_mainmenu() {
     cout << "(5) Load Data" << endl;
     cout << "(9) Exit Shoppe" << endl;
     cout << endl;
-    
+
 }
 
 void View:: show_pmmenu() {
@@ -100,6 +100,7 @@ void View:: show_pbmenu() {
     cout << "(1) View All Customers" << endl;
     cout << "(2) View All Orders" << endl;
     cout << "(3) View Sales Report" << endl;
+    cout << "(4) Add New Sales Associate" << endl;
     cout << "------------" << endl;
     cout << "(7) Load Data" << endl;
     cout << "(8) Save Data" << endl;
