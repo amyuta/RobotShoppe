@@ -14,6 +14,9 @@ public:
 	void place_order();
 	void run_report();
 	void execute_createnewpart(int cmd);
+    void execute_createrobotmodel();
+    void execute_showrobotmodels();
+    void load_data();
 private:
 	Shoppe& shoppe;
 	View view;

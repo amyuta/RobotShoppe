@@ -18,7 +18,6 @@ public:
     
 protected:
     int p_power;
-    int arm_count;
     int power_cons;
     
 };

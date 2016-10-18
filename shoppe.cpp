@@ -33,7 +33,7 @@ void Shoppe::list_parts(int type){
     if(type == 1){
         while(i < head.size()){
             
-            cout << "Head" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<" Head" << i+1 << "   | ";
             head[i]->list_all();
             i++;
         }
@@ -41,7 +41,7 @@ void Shoppe::list_parts(int type){
     else if(type == 2){
         while(i < arm.size()){
             
-            cout << "Arm" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Arm" << i+1 << "   | ";
             arm[i]->list_all();
             i++;
         }
@@ -49,7 +49,7 @@ void Shoppe::list_parts(int type){
     else if(type == 3){
         while(i < battery.size()){
             
-            cout << "Battery" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Battery" << i+1 << "   | ";
             battery[i]->list_all();
             i++;
         }
@@ -57,7 +57,7 @@ void Shoppe::list_parts(int type){
     else if(type == 4){
         while(i < loco.size()){
             
-            cout << "Locomoter" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Locomoter" << i+1 << "   | ";
             loco[i]->list_all();
             i++;
         }
@@ -65,7 +65,7 @@ void Shoppe::list_parts(int type){
     else if(type == 5){
         while(i < torso.size()){
             
-            cout << "Torso" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Torso" << i+1 << "   | ";
             torso[i]->list_all();
             i++;
         }
@@ -135,12 +135,67 @@ void Shoppe::save_info() {
     ofs.close();
 }
 
-
-
-
-void Shoppe::add_new_model(Robot_Model model) {
-  robot_models.push_back(model);
+void Shoppe::list_part_details(int type) {
+    
+    int i = 0;
+    
+    if (type == 1) {
+        while (i < head.size()) {
+            
+            head[i]->list_all_detail();
+            i++;
+        }
+    }
 }
+
+bool Shoppe:: check_parts(int c_bat, int c_torso, int c_arm){
+ 
+    int batt, tor, arm_c;
+    
+    tor = torso[c_torso-1]->quan_count();
+    batt = battery[c_bat-1]->quan_count();
+    arm_c = arm[c_arm-1]->quan_count();
+    
+    if(batt >= tor){
+        if(arm_c >= 2){
+            return true;
+        }
+    }
+    
+    return false;
+    
+}
+
+void Shoppe::make_model(int type1, int type2, int type3, int type4, int type5, int mod_num, string mod_name){
+    
+    int cost = 0;
+    
+    cost += head[type1]->get_cost();
+    cost += arm[type2]->get_cost();
+    cost += battery[type3]->get_cost();
+    cost += loco[type4]->get_cost();
+    cost += torso[type5]->get_cost();
+    
+    add_new_model(Robot_Model(mod_name, mod_num, cost), *head[type1], *arm[type2], *battery[type3], *loco[type4], *torso[type5]);
+    
+}
+
+void Shoppe::add_new_model(Robot_Model model, RobotPart head, RobotPart arm, RobotPart battery, RobotPart loco, RobotPart torso) {
+    robot_models.push_back(model);
+    robot_models[robot_models.size()-1].make_robotmodel(head, arm, battery, loco, torso);
+    
+}
+
+void Shoppe:: show_models(){
+    int i = 0;
+    
+    while(i < robot_models.size()){
+        
+        robot_models[i].show_model();
+        i++;
+    }
+}
+
 
 void Shoppe::add_order(Order order) {
   orders.push_back(order);

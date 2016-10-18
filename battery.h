@@ -8,7 +8,6 @@ class Battery : public RobotPart {
     protected:
     
     int p_energy;
-    int batt_count;
 
     public:
      Battery(int part_num, double weight, double cost, string description, int energy, int quantity) : p_energy(energy), RobotPart(part_num, weight, cost, description, quantity){}

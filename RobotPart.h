@@ -1,8 +1,9 @@
 #ifndef __ROBOTPART_H
 #define __ROBOTPART_H 
 
-#include "vector"
-#include "string"
+#include <vector>
+#include <string>
+
 
 using namespace std;
 
@@ -21,6 +22,10 @@ public:
     
     void list_all();
     void add_quan(int part_num, int quantity);
+    void list_all_detail();
+    double get_cost();
+    
+    virtual int quan_count();
 
 
 };

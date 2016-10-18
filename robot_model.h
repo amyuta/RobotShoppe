@@ -10,11 +10,14 @@ class Robot_Model {
 public:
     Robot_Model(string r_name, int r_num, double r_price)
         : name(r_name), model_num(r_num), price(r_price) {}
+    
+    void make_robotmodel(RobotPart head, RobotPart arm, RobotPart battery, RobotPart loco, RobotPart torso);
+    void show_model();
 
-private:
+protected:
     string name;
     int model_num;
     double price;
-    
+    vector<RobotPart> parts;
 };
 #endif // ROBOT_MODEL_H

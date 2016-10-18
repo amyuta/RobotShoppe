@@ -5,6 +5,8 @@
 #include "shoppe.h"
 #include "RobotPart.h"
 
+using namespace std;
+
 class Torso:public RobotPart {
     protected:
     int p_battcount;
@@ -13,8 +15,7 @@ class Torso:public RobotPart {
     public:
      Torso(int part_num, double weight, double cost, string description, int batt_count, int quantity) : p_battcount(batt_count), RobotPart(part_num, weight, cost, description, quantity){}
 
-
-
+    virtual int quan_count();
     
     
     

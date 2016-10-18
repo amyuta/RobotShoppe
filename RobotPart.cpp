@@ -2,14 +2,14 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
-#include "vector"
+
 
 using namespace std;
 
 
 void RobotPart:: list_all(){
     
-    cout<<setw(7) <<p_num<< "| "<< p_quantity<< endl;
+    cout<<setw(7) <<p_num<< "| "<< p_quantity<< "|"<< p_description <<endl;
     
 }
 
@@ -20,6 +20,17 @@ void RobotPart:: add_quan(int part_num, int quantity){
     }
 }
 
+void RobotPart:: list_all_detail() {
+    cout << "hello";
+}
 
+double RobotPart::get_cost() {
+    
+    return p_cost;
+    
+}
+int RobotPart::quan_count(){
+    return p_quantity;
+}
 
 
