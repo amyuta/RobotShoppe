@@ -11,7 +11,11 @@ public:
 	void execute_cmd(int cmd);
 	void create_model();
 	void new_customer();
-	void place_order();
+    void new_sa();
+	void place_order(int model, string name, int num, int sales_a);
+    void make_order();
+    void show_order();
+    void list_orders();
 	void run_report();
 	void execute_createnewpart(int cmd);
     void execute_createrobotmodel();

@@ -31,3 +31,28 @@ void Robot_Model::show_model(){
     
     cout << "Name: " << name << endl << "Model Number: " << model_num;
 }
+
+double Robot_Model::get_price(){
+    
+    return price;
+}
+
+void Robot_Model:: save_all() {
+
+    ofstream ofs;
+    ofs.open("data.txt", ofstream::out | ofstream::app);
+
+        ofs << name << endl;
+        ofs << model_num << endl;
+        ofs << price << endl;
+
+    ofs.close();
+
+    parts[0].save_all();
+    parts[1].save_all();
+    parts[2].save_all();
+    parts[3].save_all();
+    parts[4].save_all();
+
+
+}

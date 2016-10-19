@@ -1,4 +1,9 @@
 #include "sales_associate.h"
+#include <iostream>
+using namespace std;
 
- string SalesAssociate::get_sa_name() {return name;}
- int SalesAssociate::get_sa_number() {return number;}
+void SalesAssociate::list_all_detail(){
+    
+    cout << name << " " <<number;
+    
+}

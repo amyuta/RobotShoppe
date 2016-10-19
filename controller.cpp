@@ -58,8 +58,11 @@ void Controller:: execute_cmd(int cmd) {
         }
         else if(cmd == 1){
             execute_showrobotmodels();
-
         }
+        else if(cmd == 2){
+            show_order();
+        }
+        
     }
     else if (cmd == 3) {
         view.show_samenu();
@@ -73,6 +76,13 @@ void Controller:: execute_cmd(int cmd) {
         else if (cmd == 1) {
             new_customer();
         }
+        else if(cmd == 2){
+            make_order();
+        }
+        else if(cmd == 3){
+            list_orders();
+        }
+        
     }
     else if (cmd == 4) {
         view.show_pbmenu();
@@ -80,7 +90,10 @@ void Controller:: execute_cmd(int cmd) {
         cin >> cmd;
         cin.ignore(); // consume \n
 
-        if (cmd == 8) {
+        if(cmd == 4){
+            new_sa();
+        }
+        else if (cmd == 8) {
             shoppe.save_info();
         }
         else if(cmd == 9){
@@ -138,17 +151,6 @@ void Controller::execute_createnewpart(int cmd) {
 
             shoppe.create_newpart(new Head(part_num, weight, cost, descrip, quantity), 1);
 
-            ofstream ofs;
-            ofs.open("heads.txt", ofstream::out | ofstream::app);
-
-            ofs << part_num << endl;
-            ofs << weight << endl;
-            ofs << cost << endl;
-            ofs << quantity << endl;
-            ofs << descrip << endl;
-
-            ofs.close();
-
 
         }
 
@@ -174,17 +176,7 @@ void Controller::execute_createnewpart(int cmd) {
 
             shoppe.create_newpart(new Arm(part_num, weight, cost, descrip, power, quantity), 2);
 
-            ofstream ofs;
-            ofs.open("arms.txt", ofstream::out | ofstream::app);
 
-            ofs << part_num << endl;
-            ofs << weight << endl;
-            ofs << cost << endl;
-            ofs << power << endl;
-            ofs << quantity << endl;
-			ofs << descrip << endl;
-
-            ofs.close();
         }
 
         if (type == 3) {
@@ -209,17 +201,7 @@ void Controller::execute_createnewpart(int cmd) {
 
             shoppe.create_newpart(new Battery(part_num, weight, cost, descrip, energy, quantity), 3);
 
-            ofstream ofs;
-            ofs.open("batteries.txt", ofstream::out | ofstream::app);
 
-            ofs << part_num << endl;
-            ofs << weight << endl;
-            ofs << cost << endl;
-            ofs << energy << endl;
-            ofs << quantity << endl;
-			ofs << descrip << endl;
-
-            ofs.close();
         }
 
         if (type == 4) {
@@ -247,18 +229,7 @@ void Controller::execute_createnewpart(int cmd) {
 
             shoppe.create_newpart(new Locomotor(part_num,weight, cost, descrip, power, max_speed, quantity), 4);
 
-            ofstream ofs;
-            ofs.open("locomotors.txt", ofstream::out | ofstream::app);
 
-            ofs << part_num << endl;
-            ofs << weight << endl;
-            ofs << cost << endl;
-            ofs << power << endl;
-            ofs << max_speed << endl;
-            ofs << quantity << endl;
-			ofs << descrip << endl;
-
-            ofs.close();
         }
 
         if (type == 5) {
@@ -282,18 +253,6 @@ void Controller::execute_createnewpart(int cmd) {
             getline(cin, descrip);
 
             shoppe.create_newpart(new Torso(part_num, weight, cost, descrip, batt_count, quantity), 5);
-
-            ofstream ofs;
-            ofs.open("torsos.txt", ofstream::out | ofstream::app);
-
-            ofs << part_num << endl;
-            ofs << weight << endl;
-            ofs << cost << endl;
-            ofs << batt_count << endl;
-            ofs << quantity << endl;
-			ofs << descrip << endl;
-
-            ofs.close();
         }
     }
     else if(option == 2){
@@ -394,7 +353,7 @@ void Controller::execute_createrobotmodel(){
 void Controller::new_customer(){
 
     string c_name;
-    int c_num;
+    int c_num, sales_a;
 
      cout << "Enter Customer Name: \n";
     getline(cin, c_name);
@@ -402,152 +361,363 @@ void Controller::new_customer(){
     cout << "Enter Customer Number: \n";
     cin >> c_num;
     cin.ignore();
+    
+    cout << "Choose a Sales Associate:\n";
+    shoppe.list_sa();
+    cout << "\nCommand? ";
+    cin >> sales_a;
+    cin.ignore();
 
-    shoppe.add_customer( new Customer(c_name, c_num));
+    shoppe.add_customer( new Customer(c_name, c_num, sales_a-1));
 
-    ofstream ofs;
-    ofs.open("customers.txt", ofstream::out | ofstream::app);
+}
 
-    ofs << c_num << endl;
-    ofs << c_name << endl;
-
-    ofs.close();
-
+void Controller::new_sa(){
+    
+    string name;
+    int num;
+    
+    cout << "Enter Sales Associate name: ";
+    getline(cin, name);
+    cout << "Enter Sales Associate number: " ;
+    cin >> num;
+    cin.ignore();
+    
+    shoppe.add_sa(new SalesAssociate(name, num));
+    
 }
 
 void Controller::execute_showrobotmodels(){
-
+    int cmd, num, sales_a, model;
+    string name;
+    
+    //Make output pretty... please..........
     view.list_parts();
     shoppe.show_models();
+    
+    cout << "\n(1) Buy a Model\n";
+    cout << "(2) Exit to Main Menu\n\n";
+    cout << "Command? ";
+    cin >> cmd;
+    
+    if(cmd == 1){
+        cout<< "\nWhich Model would you like to buy?: ";
+        cin >> model;
+        cin.ignore();
+        
+        cout << "\nEnter your name: ";
+        getline(cin, name);
+        
+        cout << "Enter your number:" ;
+        cin >> num;
+        cin.ignore();
+        
+        cout << "Choose a Sales Associate:\n";
+        shoppe.list_sa();
+        cout << "\nCommand? ";
+        cin >> sales_a;
+        cin.ignore();
+        
+        shoppe.add_customer( new Customer(name, num, sales_a-1));
+        
+        cout << "Please wait for Sales Associate...\n\n";
+        view.show_samenu2();
+        cout << "\nCommand? ";
+        cin >> cmd;
+        cin.ignore();
+        
+        if(cmd == 1){
+            
+            place_order(model, name, num, sales_a);
+        }
+        
+        
+    }
+    else if(cmd == 2){
+        cli();
+    }
+}
 
+void Controller::make_order(){
+    
+    string name;
+    int num, sales_a, model, cmd;
+    
+    shoppe.list_cust();
+    
+    cout << "\n\nIs the Customer listed?" << endl << "(1) Yes" << endl << "(2) No" << endl << endl << "Command? ";
+    cin >> cmd;
+    
+    if(cmd == 1){
+        view.list_parts();
+        shoppe.show_models();
+    
+        cout<< "\nWhich Model is being purchased?: ";
+        cin >> model;
+        cin.ignore();
+    
+        cout << "\nEnter Customer's name: ";
+        getline(cin, name);
+    
+        cout << "Enter Customer's number:" ;
+        cin >> num;
+        cin.ignore();
+    
+        cout << "Sales Associate:\n";
+        shoppe.list_sa();
+        cout << "\nCommand? ";
+        cin >> sales_a;
+        cin.ignore();
+    
+        place_order(model, name, num, sales_a);
+    }
+    else{
+        
+        cout << "Add new Customer\n";
+        new_customer();
+        make_order();
+    }
+    
+}
 
+void Controller::place_order(int model, string name, int num, int sales_a){
+    
+    int o_num;
+    
+    cout << "Enter Order Number: ";
+    cin >> o_num;
+    cin.ignore();
+    
+    shoppe.add_order(new Order(o_num, model, name, num, sales_a), model-1);
+    
+    cout << "\nOrder Placed.";
+    cli();
+}
 
+void Controller::show_order(){
+    
+    string name;
+    int num, cmd, order;
+    
+    cout<< "Enter your name: ";
+    getline(cin, name);
+    cout << "Enter your number: ";
+    cin >> num;
+    cin.ignore();
+    
+    shoppe.show_orders(name, num);
+    
+    cout << endl << "(1) Pay a bill" << "(2) Main Menu" << endl;
+    cin >> cmd;
+    cin.ignore();
+    
+    if(cmd == 1){
+        cout << "Enter order to be paid: ";
+        cin >> order;
+        cin.ignore();
+        shoppe.pay_order(order-1);
+        cout << endl << "Bill Paid" << endl;
+        
+    }
+    else{
+        cli();
+    }
+    
+}
+
+void Controller::list_orders(){
+    
+    int sales_a;
+    
+    cout << "Choose a Sales Associate:\n";
+    shoppe.list_sa();
+    cout << "\nCommand? ";
+    cin >> sales_a;
+    cin.ignore();
+    
+    shoppe.list_order(sales_a-1);
+    
+    
 }
 
 
-void Controller::load_data() {
-    ifstream ifshead("heads.txt");
+void Controller::load_data() { //load saved data
     int part_num;
     int weight;
     int cost;
     int quantity;
+    int energy;
+    int batt_count;
     string descrip;
     string temp;
+    int i = 0;
+    int numcount;
+    int power;
+    ifstream ifs("data.txt"); //load from file
 
-    while(getline(ifshead, temp)){
+    getline(ifs, temp);
+    numcount = stoi(temp);
 
+    while(i < numcount) {
+        getline(ifs, temp);
         part_num = stoi(temp);
-        getline(ifshead, temp);
+        getline(ifs, temp);
         weight = stoi(temp);
-        getline(ifshead, temp);
+        getline(ifs, temp);
         cost = stoi(temp);
-        getline(ifshead, temp);
+        getline(ifs, temp);
         quantity = stoi(temp);
-        getline(ifshead, descrip);
+        getline(ifs, descrip);
 
         shoppe.create_newpart(new Head(part_num, weight, cost, descrip, quantity), 1);
     }
-	ifshead.close();
+    i = 0;
 
-	ifstream ifsbatt("batteries.txt");
-	int energy;
+    getline(ifs, temp);
+    numcount = stoi(temp);
 
-	while (getline(ifsbatt, temp)) {
-
+	while (i < numcount) {
+        getline(ifs, temp);
 		part_num = stoi(temp);
-		getline(ifsbatt, temp);
+		getline(ifs, temp);
 		weight = stoi(temp);
-		getline(ifsbatt, temp);
+		getline(ifs, temp);
 		cost = stoi(temp);
-		getline(ifsbatt, temp);
-		energy = stoi(temp);
-		getline(ifsbatt, temp);
+		getline(ifs, temp);
 		quantity = stoi(temp);
-		getline(ifsbatt, descrip);
-
-		shoppe.create_newpart(new Battery(part_num, weight, cost, descrip, energy, quantity), 3);
-	}
-	ifsbatt.close();
-
-	ifstream ifsarm("arms.txt");
-	int power;
-
-	while (getline(ifsarm, temp)) {
-
-		part_num = stoi(temp);
-		getline(ifsarm, temp);
-		weight = stoi(temp);
-		getline(ifsarm, temp);
-		cost = stoi(temp);
-		getline(ifsarm, temp);
+		getline(ifs, temp);
 		power = stoi(temp);
-		getline(ifsarm, temp);
-		quantity = stoi(temp);
-		getline(ifsarm, descrip);
+		getline(ifs, descrip);
 
 		shoppe.create_newpart(new Arm(part_num, weight, cost, descrip, power, quantity), 2);
 	}
-	ifsarm.close();
 
-	ifstream ifsloco("locomotors.txt");
+	i = 0;
 	int max_speed;
+    getline(ifs, temp);
+    numcount = stoi(temp);
 
-	while (getline(ifsloco, temp)) {
-
+	while (i < numcount) {
+        getline(ifs, temp);
 		part_num = stoi(temp);
-		getline(ifsloco, temp);
+		getline(ifs, temp);
 		weight = stoi(temp);
-		getline(ifsloco, temp);
+		getline(ifs, temp);
 		cost = stoi(temp);
-		getline(ifsloco, temp);
+		getline(ifs, temp);
+		quantity = stoi(temp);
+		getline(ifs, temp);
 		power = stoi(temp);
-		getline(ifsloco, temp);
+		getline(ifs, temp);
 		max_speed = stoi(temp);
-		getline(ifsloco, temp);
-		quantity = stoi(temp);
-		getline(ifsloco, descrip);
+		getline(ifs, descrip);
 
-		shoppe.create_newpart(new Locomotor(part_num, weight, cost, descrip, power, max_speed, quantity), 4);
+        shoppe.create_newpart(new Locomotor(part_num,weight, cost, descrip, power, max_speed, quantity), 4);
 	}
-	ifsloco.close();
 
-	ifstream ifstorso("torsos.txt");
-	int batt_count;
+	i = 0;
+	getline(ifs, temp);
+    numcount = stoi(temp);
 
-	while (getline(ifstorso, temp)) {
-
+	while (i < numcount) {
+        getline(ifs, temp);
 		part_num = stoi(temp);
-		getline(ifstorso, temp);
+		getline(ifs, temp);
 		weight = stoi(temp);
-		getline(ifstorso, temp);
+		getline(ifs, temp);
 		cost = stoi(temp);
-		getline(ifstorso, temp);
-		batt_count = stoi(temp);
-		getline(ifstorso, temp);
+		getline(ifs, temp);
 		quantity = stoi(temp);
-		getline(ifstorso, descrip);
+		getline(ifs, temp);
+		energy = stoi(temp);
+		getline(ifs, descrip);
+
+		shoppe.create_newpart(new Battery(part_num, weight, cost, descrip, energy, quantity), 3);
+	}
+
+	i = 0;
+	getline(ifs, temp);
+    numcount = stoi(temp);
+
+	while (i < numcount) {
+        getline(ifs, temp);
+		part_num = stoi(temp);
+		getline(ifs, temp);
+		weight = stoi(temp);
+		getline(ifs, temp);
+		cost = stoi(temp);
+		getline(ifs, temp);
+		quantity = stoi(temp);
+		getline(ifs, temp);
+		batt_count = stoi(temp);
+		getline(ifs, descrip);
 
 		shoppe.create_newpart(new Torso(part_num, weight, cost, descrip, batt_count, quantity), 5);
 	}
-	ifstorso.close();
 
-	ifstream ifscust("customers.txt");
 
-	int c_num;
+	i = 0;
 	string c_name;
+	int c_num;
+	getline(ifs, temp);
+    numcount = stoi(temp);
 
-	while (getline(ifscust, temp)){
-
+    while (i < numcount) {
+        getline(ifs, temp);
         c_num = stoi(temp);
-        getline(ifscust, c_name);
-	}
+        getline(ifs, c_name);
+        shoppe.add_customer( new Customer(c_name, c_num));
+    }
 
-	shoppe.add_customer( new Customer(c_name, c_num));
+    i = 0;
+    int model_num;
+    int price;
+    int check;
+    int headm, armm, torsom, battm, locom;
+    string name;
+    getline(ifs, temp);
+    numcount = stoi(temp);
 
-	ifscust.close();
+    while (i < numcount) {
+        getline(ifs, name);
+        getline(ifs, temp);
+        model_num = stoi(temp);
+        getline(ifs, temp);
+        price = stoi(temp);
+        getline(ifs, temp);
+        check = stoi(temp);
+        headm = shoppe.searchfor_part(1, check);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        armm = shoppe.searchfor_part(2, check);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        torsom = shoppe.searchfor_part(3, check);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        battm = shoppe.searchfor_part(4, check);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        locom = shoppe.searchfor_part(5, check);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        getline(ifs, temp);
+        shoppe.make_model(headm, armm, battm, locom, torsom, model_num, name);
+    }
+
+
 }
-
-
-
-
-

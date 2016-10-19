@@ -1,14 +1,9 @@
-
+#include "locomotor.h"
 #include <stdio.h>
-#include "torso.h"
+#include <fstream>
+#include <ostream>
 
-int Torso::quan_count(){
-    
-    return p_battcount;
-    
-}
-
-void Torso:: save_all() {
+void Locomotor:: save_all() {
 
     ofstream ofs;
     ofs.open("data.txt", ofstream::out | ofstream::app);
@@ -17,9 +12,9 @@ void Torso:: save_all() {
             ofs << p_weight << endl;
             ofs << p_cost << endl;
             ofs << p_quantity << endl;
-            ofs << p_battcount << endl;
+            ofs << p_power << endl;
+            ofs << p_maxspeed << endl;
             ofs << p_description << endl;
 
             ofs.close();
 }
-

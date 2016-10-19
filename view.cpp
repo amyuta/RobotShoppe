@@ -5,23 +5,6 @@
 
 using namespace std;
 
-/*void View::show_mainmenu() {
-	cout << endl << endl;
-	cout << "===============================" << endl;
-	cout << "          ROBOT SHOPPE" << endl;
-	cout << "===============================" << endl;
-	cout << endl;
-	cout << "Shoppe Main Menu" << endl;
-	cout << "------------" << endl;
-	cout << "(1) Create New" << endl;
-	cout << "(2) Reports" << endl;
-	cout << "(3) Save" << endl;
-	cout << "(9) Exit Shoppe" << endl;
-	cout << endl;
-
-}
- */
-
 void View:: show_mainmenu() {
     cout << endl << endl;
     cout << "===============================" << endl;
@@ -67,7 +50,6 @@ void View:: show_bcmenu() {
     cout << "------------" << endl;
     cout << "(1) Browse Robot Model Catalog" << endl;
     cout << "(2) View My Orders" << endl;
-    cout << "(3) Pay My Bills" << endl;
     cout << "------------" << endl;
     cout << "(9) Return to Main Menu" << endl;
     cout << endl;
@@ -81,13 +63,27 @@ void View:: show_samenu() {
     cout << endl;
     cout << "Sales Associate Menu" << endl;
     cout << "------------" << endl;
-    cout << "(1) Create New Customer" << endl;
+    cout << "(1) Create New Customer" << endl; 
     cout << "(2) Place Order for Customer" << endl;
     cout << "(3) View Orders" << endl; //Customers attached to this sa
     cout << "------------" << endl;
     cout << "(9) Return to Main Menu" << endl;
     cout << endl;
 }
+
+void View:: show_samenu2() {
+    cout << endl << endl;
+    cout << "===============================" << endl;
+    cout << "          ROBOT SHOPPE" << endl;
+    cout << "===============================" << endl;
+    cout << endl;
+    cout << "Sales Associate Menu" << endl;
+    cout << "------------" << endl;
+    cout << "(1) Place Order for Customer" << endl;
+    cout << "------------" << endl;
+
+}
+
 
 void View:: show_pbmenu() {
     cout << endl << endl;
@@ -97,7 +93,7 @@ void View:: show_pbmenu() {
     cout << endl;
     cout << "Pointed-haired Boss Menu" << endl;
     cout << "------------" << endl;
-    cout << "(1) View All Customers" << endl;
+    cout << "(1) View All SA?" << endl;
     cout << "(2) View All Orders" << endl;
     cout << "(3) View Sales Report" << endl;
     cout << "(4) Add New Sales Associate" << endl;
@@ -108,40 +104,6 @@ void View:: show_pbmenu() {
     cout << endl;
 }
 
-/*void View::show_createmenu() {
-	cout << endl << endl;
-	cout << "===============================" << endl;
-	cout << "          ROBOT SHOPPE" << endl;
-	cout << "===============================" << endl;
-	cout << endl;
-	cout << "'Create New/Add to existing' Menu" << endl;
-	cout << "------------" << endl;
-	cout << "(1) Create New Sales Associates" << endl;
-	cout << "(2) View Sales Report" << endl;
-    cout << "------------" << endl;
-	cout << "(9) Return to Main Menu" << endl;
-	cout << endl;
-
-}*/
-
-/*void View::show_reportmenu() {
-	cout << endl << endl;
-	cout << "===============================" << endl;
-	cout << "          ROBOT SHOPPE" << endl;
-	cout << "===============================" << endl;
-	cout << endl;
-	cout << "Report Menu" << endl;
-	cout << "------------" << endl;
-	cout << "(1) Orders" << endl;
-	cout << "(2) Customers" << endl;
-	cout << "(3) Sales Associates" << endl;
-	cout << "(4) Robot Models" << endl;
-	cout << "(5) Robot Parts" << endl;
-	cout << "(9) Return to Main Menu" << endl;
-	cout << endl;
-
-}
- */
 
 void View::list_parts() {
 	cout << endl;

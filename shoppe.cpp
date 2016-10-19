@@ -196,35 +196,221 @@ void Shoppe:: show_models(){
     }
 }
 
+void Shoppe::add_sa(SalesAssociate* sa){
+    
+    sales_a.push_back(sa);
+}
 
-void Shoppe::add_order(Order order) {
-  orders.push_back(order);
+
+void Shoppe::list_sa(){
+    int i = 0;
+    while (i < sales_a.size()) {
+        
+        cout << "(" << i+1 << ") ";
+        sales_a[i]->list_all_detail();
+        i++;
+    }
+    
+}
+
+void Shoppe::add_order(Order* order, int model ) {
+    double price;
+    
+    price = robot_models[model].get_price();
+    order->get_price(price);
+    orders.push_back(order);
+    
+}
+
+void Shoppe::show_orders(string name, int num){
+    
+    int i = 0;
+    
+    while(i < orders.size()){
+        
+        cout << "(" << i+1 << ") ";
+        orders[i]->show_order(name, num);
+        i++;
+        cout << endl;
+    }
+}
+
+void Shoppe:: pay_order(int ord_num){
+    
+    orders[ord_num]->pay_now();
+}
+
+void Shoppe::list_order(int sales_a){
+    
+    int i = 0;
+    
+    while(i < orders.size()){
+        cout << "\n(" << i+1 << ") ";
+        orders[i]->list_order(sales_a);
+        i++;
+    }
 }
 
 
 void Shoppe::add_customer(Customer* customer) {
   customers.push_back(customer);
 }
-/*
-void Shoppe::add_sa(SalesAssociate sa) {
-  sales_associates.push_back(sa);
-}
-*/
 
-/*
-int Shoppe::num_of_models() {
-  return robot_models.size();
-}
-
-int Shoppe::num_of_orders() {
-  return orders.size();
+void Shoppe::list_cust(){
+    
+    int i = 0;
+    while (i < customers.size()) {
+        
+        cout << "(" << i+1 << ") ";
+        customers[i]->list_all_detail();
+        i++;
+    }
 }
 
-int Shoppe::num_of_customers() {
-  return customers.size();
+void Shoppe::save_info() {
+
+    cout << "Please wait while we save...\n";
+    int i = 0;
+
+    ofstream ofs;
+    ofs.open("data.txt");   //print the head count for the loading process.
+    ofs << head.size() << endl;
+    ofs.close();
+
+    while (i < head.size()){
+        head[i]->save_all();
+        i++;
+    }
+
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app);   //print the arm count for the loading process.
+    ofs << arm.size() << endl;
+    ofs.close();
+
+    while (i < arm.size()) {
+        arm[i]->save_all();
+        i++;
+    }
+
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app);   //print the loco count for the loading process.
+    ofs << loco.size() << endl;
+    ofs.close();
+
+    while (i < loco.size()) {
+        loco[i]->save_all();
+        i++;
+    }
+
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app);   //print the battery count for the loading process.
+    ofs << battery.size() << endl;
+    ofs.close();
+
+    while (i < battery.size()) {
+        battery[i]->save_all();
+        i++;
+    }
+
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app);   //print the torso count for the loading process.
+    ofs << torso.size() << endl;
+    ofs.close();
+
+    while (i < torso.size()) {
+        torso[i]->save_all();
+        i++;
+    }
+
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app); //print the customer count for loading
+    ofs << customers.size() << endl;
+    ofs.close();
+
+    while (i < customers.size()) {
+        customers[i]->save_all();
+        i++;
+    }
+
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app); //print the model count for the loading
+    ofs << robot_models.size() << endl;
+    ofs.close();
+
+    while (i < robot_models.size()) {
+        robot_models[i].save_all();
+        i++;
+    }
+
+
+
+
+
 }
 
-int Shoppe::num_of_sas() {
-  return sales_associates.size();
+int Shoppe::searchfor_part(int type, int num){
+
+    int i = 0, pnum;
+
+    if (type == 1) {
+
+        while (i < head.size()) {
+                pnum = head[i]->get_pnum();
+            if (pnum == num) {
+                return i;
+            }
+        }
+    }
+
+    i = 0;
+
+    if (type == 2) {
+
+        while (i < arm.size()) {
+                pnum = arm[i]->get_pnum();
+            if (pnum == num) {
+                return i;
+            }
+        }
+    }
+
+    i = 0;
+
+    if (type == 3) {
+
+        while (i < battery.size()) {
+                pnum = battery[i]->get_pnum();
+            if ( pnum == num) {
+                return i;
+            }
+        }
+    }
+
+    i = 0;
+
+    if (type == 4) {
+
+        while (i < loco.size()) {
+                pnum = loco[i]->get_pnum();
+            if (pnum == num) {
+                return i;
+            }
+        }
+    }
+
+    i = 0;
+
+    if (type == 5) {
+
+        while (i < torso.size()) {
+                pnum = torso[i]->get_pnum();
+            if ( pnum == num) {
+                return i;
+            }
+        }
+    }
+
 }
-*/
+
+
+

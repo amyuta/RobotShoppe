@@ -13,6 +13,9 @@ public:
     
     void make_robotmodel(RobotPart head, RobotPart arm, RobotPart battery, RobotPart loco, RobotPart torso);
     void show_model();
+    double get_price();
+    virtual void save_all();
+    
 
 protected:
     string name;

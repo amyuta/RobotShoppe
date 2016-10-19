@@ -17,6 +17,7 @@ class Torso:public RobotPart {
 
     virtual int quan_count();
     
+    virtual void save_all();
     
     
 

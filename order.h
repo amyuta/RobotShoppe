@@ -7,22 +7,25 @@ using namespace std;
 
 class Order {
 public:
-    Order(int o_num, string o_date)
-        : order_num(o_num), date(o_date) {}
+    Order(int o_num, int robo_model, string c_name, int c_num, int sales_a)
+        : order_num(o_num), model(robo_model), name(c_name), num(c_num), sales_a(sales_a) {}
 
-    double get_robot_cost();
-    double get_ship();
-    double get_tax();
-    double get_total_cost();
+    void get_price(double price);
+    void show_order(string name, int c_num);
+    void order_paid();
+    void pay_now();
+    void list_order(int sales_as);
 
 private:
     int order_num;
-    string date;
+    int model;
+    int sales_a;
     double total_cost;
-    double shipping;
+    double shipping = 5.0;
     double tax;
-    //customer
-    //robot model
-    //sales associate
+    string name;
+    int num;
+    bool paid = false;
+
 };
 #endif // ORDER_H

@@ -12,7 +12,7 @@ class Battery : public RobotPart {
     public:
      Battery(int part_num, double weight, double cost, string description, int energy, int quantity) : p_energy(energy), RobotPart(part_num, weight, cost, description, quantity){}
 
-	 
+	virtual void save_all(); 
 
  };
 

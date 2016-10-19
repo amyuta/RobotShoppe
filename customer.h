@@ -2,19 +2,22 @@
 #define CUSTOMER_H
 
 #include <string>
+#include "sales_associate.h"
 using namespace std;
 
 class Customer {
 
+    friend SalesAssociate;
 public:
-    Customer(string c_name, int c_num) : name(c_name), number(c_num) {}
+    Customer(string c_name, int c_num, int sales_a) : name(c_name), number(c_num), sales_a(sales_a) {}
 
-    string get_customer_name();
-    int get_customer_number();
-    //Order order;
-private:
+    void list_all_detail();
+    
+protected:
     string name;
     int number;
+    int sales_a;
+    //Order order;
 
 };
 
