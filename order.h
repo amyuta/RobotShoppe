@@ -16,6 +16,7 @@ public:
     void pay_now();
     void save_all();
     void list_order(int sales_as);
+    bool paid_order(int sales_as);
 
 private:
     int order_num;

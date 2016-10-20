@@ -43,6 +43,7 @@ public:
     void show_orders(string name, int num);
     void pay_order(int ord_num);
     void list_order(int sales_a);
+    void paid_orders(int sa);
     
     //save
     void save_info();

@@ -33,7 +33,7 @@ void Shoppe::list_parts(int type){
     if(type == 1){
         while(i < head.size()){
 
-            cout << "(" << i+1 << ")"<<" Head" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<" Head" << ": Part Number: ";
             head[i]->list_all();
             i++;
         }
@@ -41,7 +41,7 @@ void Shoppe::list_parts(int type){
     else if(type == 2){
         while(i < arm.size()){
 
-            cout << "(" << i+1 << ")"<<"Arm" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Arm" << ": Part Number: ";
             arm[i]->list_all();
             i++;
         }
@@ -49,7 +49,7 @@ void Shoppe::list_parts(int type){
     else if(type == 3){
         while(i < battery.size()){
 
-            cout << "(" << i+1 << ")"<<"Battery" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Battery" << ": Part Number: ";
             battery[i]->list_all();
             i++;
         }
@@ -57,7 +57,7 @@ void Shoppe::list_parts(int type){
     else if(type == 4){
         while(i < loco.size()){
 
-            cout << "(" << i+1 << ")"<<"Locomoter" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Locomoter" << ": Part Number: ";
             loco[i]->list_all();
             i++;
         }
@@ -65,7 +65,7 @@ void Shoppe::list_parts(int type){
     else if(type == 5){
         while(i < torso.size()){
 
-            cout << "(" << i+1 << ")"<<"Torso" << i+1 << "   | ";
+            cout << "(" << i+1 << ")"<<"Torso" << ": Part Number: ";
             torso[i]->list_all();
             i++;
         }
@@ -167,7 +167,7 @@ void Shoppe:: show_models(){
     int i = 0;
 
     while(i < robot_models.size()){
-
+        cout << endl <<"Model (" << i+1 << ")" << endl;
         robot_models[i].show_model();
         i++;
     }
@@ -214,7 +214,7 @@ void Shoppe::show_orders(string name, int num){
     
     while(i < orders.size()){
         
-        cout << "(" << i+1 << ") ";
+        cout << "Order (" << i+1 << ") " << endl;
         orders[i]->show_order(name, num);
         i++;
         cout << endl;
@@ -224,6 +224,25 @@ void Shoppe::show_orders(string name, int num){
 void Shoppe:: pay_order(int ord_num){
     
     orders[ord_num]->pay_now();
+}
+
+void Shoppe::paid_orders(int sa){
+    
+    int i = 0, count = 0;
+    bool prof_count;
+    
+    while(i < orders.size()){
+        
+        cout << endl;
+        prof_count = orders[i]->paid_order(sa);
+        if(prof_count){
+            count++;
+        }
+        i++;
+    }
+    cout << endl << "Profit: " << count*100 << endl;
+    
+    
 }
 
 void Shoppe::list_order(int sales_a){
@@ -341,6 +360,7 @@ void Shoppe::save_info(){
         i++;
     }
     
+    /*
     i = 0;
     ofs.open("data.txt", ofstream::out | ofstream::app); //print the order count for the loading
     ofs << orders.size() << endl;
@@ -350,6 +370,7 @@ void Shoppe::save_info(){
         orders[i]->save_all();
         i++;
     }
+     */
 
 
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include<string>
 #include <iostream>
+#include <iomanip>
 #include <ostream>
 #include <fstream>
 #include <vector>
@@ -20,18 +21,20 @@ void Robot_Model:: make_robotmodel(RobotPart head, RobotPart arm, RobotPart batt
 
 void Robot_Model::show_model(){
     
-    cout << "Head";
+    cout << "Name: " << name << endl << "Model Number: " << model_num << endl;
+    
+    cout <<"Head: Part Number: ";
     parts[0].list_all();
-    cout << "\nArm";
+    cout << "Arm: Part Number: ";
     parts[1].list_all();
-    cout << "\nBattery";
+    cout << "Battery: Part Number: ";
     parts[2].list_all();
-    cout << "\nLocomotor";
+    cout << "Locomotor: Part Number: ";
     parts[3].list_all();
-    cout << "\nTorso";
+    cout << "Torso: Part Number: ";
     parts[4].list_all();
     
-    cout << "Name: " << name << endl << "Model Number: " << model_num;
+    
 }
 
 double Robot_Model::get_price(){

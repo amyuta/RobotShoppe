@@ -10,8 +10,8 @@ using namespace std;
 
 
 void RobotPart:: list_all(){
-    
-    cout<<setw(7) <<p_num<< "| "<< p_quantity<< "|"<< p_description <<endl;
+
+    cout << p_num << endl;
     
 }
 
