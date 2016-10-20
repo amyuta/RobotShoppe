@@ -16,6 +16,8 @@ public:
     void make_order();
     void show_order();
     void list_orders();
+    void sa_raise();
+    void pb_raise();
 	void run_report();
 	void execute_createnewpart(int cmd);
     void execute_createrobotmodel();

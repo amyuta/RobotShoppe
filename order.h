@@ -14,6 +14,7 @@ public:
     void show_order(string name, int c_num);
     void order_paid();
     void pay_now();
+    void save_all();
     void list_order(int sales_as);
 
 private:

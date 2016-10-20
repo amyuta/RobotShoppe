@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include<string>
 #include <iostream>
+#include <ostream>
+#include <fstream>
 #include <vector>
 #include "robot_model.h"
 
@@ -37,7 +39,7 @@ double Robot_Model::get_price(){
     return price;
 }
 
-void Robot_Model:: save_all() {
+void Robot_Model:: save_alls() {
 
     ofstream ofs;
     ofs.open("data.txt", ofstream::out | ofstream::app);

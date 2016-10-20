@@ -4,6 +4,7 @@
 #include "string"
 //#include "std_lib_facilities.h"
 #include "RobotPart.h"
+#include "robot_model.h"
 
 class Locomotor:public RobotPart {
       

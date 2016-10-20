@@ -4,6 +4,7 @@
 //#include "std_lib_facilities.h"
 #include "shoppe.h"
 #include "RobotPart.h"
+#include "robot_model.h"
 
 using namespace std;
 

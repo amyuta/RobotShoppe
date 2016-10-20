@@ -111,29 +111,6 @@ void Shoppe::add_to_parts(int type, int quantity, int part_num){
 
 }
 
-void Shoppe::save_info() {
-
-    cout << "Please wait while we save...\n";
-
-    ofstream ofs;
-    ofs.open("data.txt");   /////////find thing to create .txt file
-    ofs << "Write to File\n";
-
-    /*  cout << "\n\n Please wait while the current data is saving...\n";
-    ofstream ofs{"data.dat", ios_base::binary};
-
-    if (!ofs) {
-        cout << "Error opening file" << endl;
-    }
-
-    for (int i = 0; i <head.size(); ++i)
-        ofs.write(as_bytes(head[i]), sizeof(int));*/
-
-
-
-
-    ofs.close();
-}
 
 void Shoppe::list_part_details(int type) {
 
@@ -212,6 +189,15 @@ void Shoppe::list_sa(){
     }
     
 }
+void Shoppe::sa_raisecheck(int sa){
+    
+    sales_a[sa]->raisecheck();
+}
+
+void Shoppe::pb_raise(int sa){
+    
+    sales_a[sa]->raise_final();
+}
 
 void Shoppe::add_order(Order* order, int model ) {
     double price;
@@ -267,7 +253,9 @@ void Shoppe::list_cust(){
     }
 }
 
-void Shoppe::save_info() {
+void Shoppe::save_info(){
+    
+    
 
     cout << "Please wait while we save...\n";
     int i = 0;
@@ -293,16 +281,6 @@ void Shoppe::save_info() {
     }
 
     i = 0;
-    ofs.open("data.txt", ofstream::out | ofstream::app);   //print the loco count for the loading process.
-    ofs << loco.size() << endl;
-    ofs.close();
-
-    while (i < loco.size()) {
-        loco[i]->save_all();
-        i++;
-    }
-
-    i = 0;
     ofs.open("data.txt", ofstream::out | ofstream::app);   //print the battery count for the loading process.
     ofs << battery.size() << endl;
     ofs.close();
@@ -312,6 +290,17 @@ void Shoppe::save_info() {
         i++;
     }
 
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app);   //print the loco count for the loading process.
+    ofs << loco.size() << endl;
+    ofs.close();
+    
+    while (i < loco.size()) {
+        loco[i]->save_all();
+        i++;
+    }
+    
+    
     i = 0;
     ofs.open("data.txt", ofstream::out | ofstream::app);   //print the torso count for the loading process.
     ofs << torso.size() << endl;
@@ -331,6 +320,16 @@ void Shoppe::save_info() {
         customers[i]->save_all();
         i++;
     }
+    
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app); //print the sa count for loading
+    ofs << sales_a.size() << endl;
+    ofs.close();
+    
+    while (i < sales_a.size()) {
+        sales_a[i]->save_all();
+        i++;
+    }
 
     i = 0;
     ofs.open("data.txt", ofstream::out | ofstream::app); //print the model count for the loading
@@ -338,12 +337,19 @@ void Shoppe::save_info() {
     ofs.close();
 
     while (i < robot_models.size()) {
-        robot_models[i].save_all();
+        robot_models[i].save_alls();
         i++;
     }
-
-
-
+    
+    i = 0;
+    ofs.open("data.txt", ofstream::out | ofstream::app); //print the order count for the loading
+    ofs << orders.size() << endl;
+    ofs.close();
+    
+    while (i < orders.size()) {
+        orders[i]->save_all();
+        i++;
+    }
 
 
 }
@@ -359,6 +365,7 @@ int Shoppe::searchfor_part(int type, int num){
             if (pnum == num) {
                 return i;
             }
+            i++;
         }
     }
 
@@ -371,6 +378,7 @@ int Shoppe::searchfor_part(int type, int num){
             if (pnum == num) {
                 return i;
             }
+            i++;
         }
     }
 
@@ -383,6 +391,7 @@ int Shoppe::searchfor_part(int type, int num){
             if ( pnum == num) {
                 return i;
             }
+            i++;
         }
     }
 
@@ -395,6 +404,7 @@ int Shoppe::searchfor_part(int type, int num){
             if (pnum == num) {
                 return i;
             }
+            i++;
         }
     }
 
@@ -407,9 +417,11 @@ int Shoppe::searchfor_part(int type, int num){
             if ( pnum == num) {
                 return i;
             }
+            i++;
         }
     }
 
+    return 0;
 }
 
 

@@ -3,6 +3,7 @@
 
 //#include "std_lib_facilities.h"
 #include "RobotPart.h"
+#include "robot_model.h"
 
 class Battery : public RobotPart {
     protected:

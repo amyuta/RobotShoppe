@@ -27,6 +27,7 @@ public:
     double get_cost();
     
     virtual int quan_count();
+    virtual void save_all();
 
 
 };

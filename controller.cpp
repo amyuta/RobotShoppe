@@ -82,6 +82,10 @@ void Controller:: execute_cmd(int cmd) {
         else if(cmd == 3){
             list_orders();
         }
+        else if(cmd == 4){
+            
+            sa_raise();
+        }
         
     }
     else if (cmd == 4) {
@@ -90,11 +94,21 @@ void Controller:: execute_cmd(int cmd) {
         cin >> cmd;
         cin.ignore(); // consume \n
 
-        if(cmd == 4){
+        if(cmd == 1){
+            cout << "\n";
+            shoppe.list_sa();
+            cout << "\n";
+            execute_cmd(4);
+        }
+        else if(cmd == 2){
+            list_orders();
+            
+        }
+        else if(cmd == 4){
             new_sa();
         }
-        else if (cmd == 8) {
-            shoppe.save_info();
+        else if(cmd == 5){
+            pb_raise();
         }
         else if(cmd == 9){
             view.show_mainmenu();
@@ -102,8 +116,11 @@ void Controller:: execute_cmd(int cmd) {
     }
     else if(cmd == 5){
 
-        cout<< "Loading my a$$\n";
+        cout<< "Please wait while we load files...\n";
         load_data();
+    }
+    else if (cmd == 6) {
+        shoppe.save_info();
     }
     else if (cmd == 9) {
         exit(1);
@@ -428,7 +445,7 @@ void Controller::execute_showrobotmodels(){
         
         if(cmd == 1){
             
-            place_order(model, name, num, sales_a);
+            place_order(model, name, num, sales_a-1);
         }
         
         
@@ -469,7 +486,7 @@ void Controller::make_order(){
         cin >> sales_a;
         cin.ignore();
     
-        place_order(model, name, num, sales_a);
+        place_order(model, name, num, sales_a-1);
     }
     else{
         
@@ -536,10 +553,36 @@ void Controller::list_orders(){
     cin.ignore();
     
     shoppe.list_order(sales_a-1);
-    
-    
 }
 
+void Controller::sa_raise(){
+    
+    int sales_a;
+    
+    cout << "Choose a Sales Associate:\n";
+    shoppe.list_sa();
+    cout << "\nCommand? ";
+    cin >> sales_a;
+    cin.ignore();
+
+    shoppe.sa_raisecheck(sales_a-1);
+
+}
+
+void Controller::pb_raise(){
+    
+    int sales_a;
+    
+    cout << "Look at Sales Report for Justification\n\n";
+    cout << "Choose a Sales Associate:\n";
+    shoppe.list_sa();
+    cout << "\nCommand? ";
+    cin >> sales_a;
+    cin.ignore();
+    
+    shoppe.pb_raise(sales_a-1);
+
+}
 
 void Controller::load_data() { //load saved data
     int part_num;
@@ -570,6 +613,7 @@ void Controller::load_data() { //load saved data
         getline(ifs, descrip);
 
         shoppe.create_newpart(new Head(part_num, weight, cost, descrip, quantity), 1);
+        i++;
     }
     i = 0;
 
@@ -588,9 +632,32 @@ void Controller::load_data() { //load saved data
 		getline(ifs, temp);
 		power = stoi(temp);
 		getline(ifs, descrip);
+        
 
 		shoppe.create_newpart(new Arm(part_num, weight, cost, descrip, power, quantity), 2);
+        i++;
 	}
+    
+    i = 0;
+    getline(ifs, temp);
+    numcount = stoi(temp);
+    
+    while (i < numcount) {
+        getline(ifs, temp);
+        part_num = stoi(temp);
+        getline(ifs, temp);
+        weight = stoi(temp);
+        getline(ifs, temp);
+        cost = stoi(temp);
+        getline(ifs, temp);
+        quantity = stoi(temp);
+        getline(ifs, temp);
+        energy = stoi(temp);
+        getline(ifs, descrip);
+        
+        shoppe.create_newpart(new Battery(part_num, weight, cost, descrip, energy, quantity), 3);
+        i++;
+    }
 
 	i = 0;
 	int max_speed;
@@ -613,27 +680,9 @@ void Controller::load_data() { //load saved data
 		getline(ifs, descrip);
 
         shoppe.create_newpart(new Locomotor(part_num,weight, cost, descrip, power, max_speed, quantity), 4);
+        i++;
 	}
 
-	i = 0;
-	getline(ifs, temp);
-    numcount = stoi(temp);
-
-	while (i < numcount) {
-        getline(ifs, temp);
-		part_num = stoi(temp);
-		getline(ifs, temp);
-		weight = stoi(temp);
-		getline(ifs, temp);
-		cost = stoi(temp);
-		getline(ifs, temp);
-		quantity = stoi(temp);
-		getline(ifs, temp);
-		energy = stoi(temp);
-		getline(ifs, descrip);
-
-		shoppe.create_newpart(new Battery(part_num, weight, cost, descrip, energy, quantity), 3);
-	}
 
 	i = 0;
 	getline(ifs, temp);
@@ -653,12 +702,13 @@ void Controller::load_data() { //load saved data
 		getline(ifs, descrip);
 
 		shoppe.create_newpart(new Torso(part_num, weight, cost, descrip, batt_count, quantity), 5);
+        i++;
 	}
 
 
 	i = 0;
 	string c_name;
-	int c_num;
+	int c_num, sales_a;
 	getline(ifs, temp);
     numcount = stoi(temp);
 
@@ -666,9 +716,28 @@ void Controller::load_data() { //load saved data
         getline(ifs, temp);
         c_num = stoi(temp);
         getline(ifs, c_name);
-        shoppe.add_customer( new Customer(c_name, c_num));
+        getline(ifs, temp);
+        sales_a = stoi(temp);
+        shoppe.add_customer( new Customer(c_name, c_num, sales_a));
+        i++;
+    }
+    
+    i = 0;
+    int sa_num;
+    string sa_name;
+    getline(ifs, temp);
+    numcount = stoi(temp);
+    
+    while (i < numcount) {
+        getline(ifs, temp);
+        sa_num = stoi(temp);
+        getline(ifs, sa_name);
+        shoppe.add_sa(new SalesAssociate(sa_name, sa_num));
+        i++;
+        
     }
 
+    
     i = 0;
     int model_num;
     int price;
@@ -682,41 +751,75 @@ void Controller::load_data() { //load saved data
         getline(ifs, name);
         getline(ifs, temp);
         model_num = stoi(temp);
+        
         getline(ifs, temp);
         price = stoi(temp);
+        
         getline(ifs, temp);
-        check = stoi(temp);
+        check = stoi(temp); // part number
         headm = shoppe.searchfor_part(1, check);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
+        
+        getline(ifs, temp);
+        check = stoi(temp);
         armm = shoppe.searchfor_part(2, check);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
-        torsom = shoppe.searchfor_part(3, check);
+        
+        check = stoi(temp);
+        battm = shoppe.searchfor_part(3, check);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
-        battm = shoppe.searchfor_part(4, check);
+        
+        check = stoi(temp);
+        locom = shoppe.searchfor_part(4, check);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
-        locom = shoppe.searchfor_part(5, check);
+        //getline(ifs, temp);
+        
+        check = stoi(temp);
+        torsom = shoppe.searchfor_part(5, check);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
         getline(ifs, temp);
-        getline(ifs, temp);
+        
         shoppe.make_model(headm, armm, battm, locom, torsom, model_num, name);
+        i++;
+    }
+    
+    i = 0;
+    int o_num, o_model, oc_num, o_sales;
+    string o_name;
+    getline(ifs, temp);
+    numcount = stoi(temp);
+    
+    while (i < numcount) {
+        getline(ifs, temp);
+        o_num = stoi(temp);
+        getline(ifs, temp);
+        o_model = stoi(temp);
+        getline(ifs, o_name);
+        getline(ifs, temp);
+        oc_num = stoi(temp);
+        getline(ifs, temp);
+        o_sales = stoi(temp);
+        shoppe.add_order(new Order(o_num, o_model, o_name, oc_num, o_sales), o_model-1);
+        i++;
+        
     }
 
 

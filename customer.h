@@ -12,6 +12,7 @@ public:
     Customer(string c_name, int c_num, int sales_a) : name(c_name), number(c_num), sales_a(sales_a) {}
 
     void list_all_detail();
+    void save_all();
     
 protected:
     string name;

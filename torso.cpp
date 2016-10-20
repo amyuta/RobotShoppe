@@ -1,5 +1,7 @@
 
 #include <stdio.h>
+#include <ostream>
+#include <fstream>
 #include "torso.h"
 
 int Torso::quan_count(){

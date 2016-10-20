@@ -27,6 +27,8 @@ public:
     
     //method to list all sales associate
     void list_sa();
+    void sa_raisecheck(int sa);
+    void pb_raise(int sa);
     
     //method to list all customers
     void list_cust();

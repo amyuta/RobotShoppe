@@ -1,5 +1,6 @@
 #include "order.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -18,6 +19,21 @@ void Order::show_order(string name, int c_num){
     else{
         return;
     }
+    
+}
+
+void Order::save_all() {
+    
+    ofstream ofs;
+    ofs.open("data.txt", ofstream::out | ofstream::app);
+    
+    ofs << order_num << endl;
+    ofs << model << endl;
+    ofs << name << endl;
+    ofs << num << endl;
+    ofs << sales_a << endl;
+    
+    ofs.close();
     
 }
 

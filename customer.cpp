@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include <fstream>
 #include <ostream>
-
- string Customer::get_customer_name() {return name;}
- int Customer::get_customer_number() {return number;}
+#include <iostream>
+using namespace std;
 
 void Customer::save_all(){
 
@@ -13,7 +12,11 @@ void Customer::save_all(){
 
             ofs << number << endl;
             ofs << name << endl;
+            ofs << sales_a << endl;
 
             ofs.close();
 }
-
+void Customer::list_all_detail(){
+    
+    cout << name << " " <<number;
+}

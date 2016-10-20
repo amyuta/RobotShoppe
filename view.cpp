@@ -20,6 +20,7 @@ void View:: show_mainmenu() {
     cout << "(4) Pointed-haired Boss" << endl;
     cout << "------------" << endl;
     cout << "(5) Load Data" << endl;
+    cout << "(6) Save Data" << endl;
     cout << "(9) Exit Shoppe" << endl;
     cout << endl;
 
@@ -66,6 +67,7 @@ void View:: show_samenu() {
     cout << "(1) Create New Customer" << endl; 
     cout << "(2) Place Order for Customer" << endl;
     cout << "(3) View Orders" << endl; //Customers attached to this sa
+    cout << "(4) Ask for Raise" << endl;
     cout << "------------" << endl;
     cout << "(9) Return to Main Menu" << endl;
     cout << endl;
@@ -93,13 +95,12 @@ void View:: show_pbmenu() {
     cout << endl;
     cout << "Pointed-haired Boss Menu" << endl;
     cout << "------------" << endl;
-    cout << "(1) View All SA?" << endl;
-    cout << "(2) View All Orders" << endl;
+    cout << "(1) View All Sales Associates" << endl;
+    cout << "(2) View Orders" << endl;
     cout << "(3) View Sales Report" << endl;
     cout << "(4) Add New Sales Associate" << endl;
+    cout << "(5) Accept Raise" << endl;
     cout << "------------" << endl;
-    cout << "(7) Load Data" << endl;
-    cout << "(8) Save Data" << endl;
     cout << "(9) Return to Main Menu" << endl;
     cout << endl;
 }
