@@ -1,0 +1,72 @@
+1
+123
+12
+120
+2
+Red Head
+1
+345
+23
+100
+5
+100
+Blue Arm
+1
+235
+65
+30
+7
+25
+Duracell
+1
+678
+78
+345
+3
+10
+1
+Green Locomotor
+1
+778
+45
+90
+4
+2
+Pink Torso
+1
+333
+Fara
+0
+1
+120
+Amy
+1
+Robo1
+456789
+685
+123
+12
+120
+2
+Red Head
+345
+23
+100
+5
+Blue Arm
+235
+65
+30
+7
+Duracell
+678
+78
+345
+3
+Green Locomotor
+778
+45
+90
+4
+Pink Torso
+
