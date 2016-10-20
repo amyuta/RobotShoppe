@@ -18,7 +18,7 @@ public:
     void list_orders();
     void sa_raise();
     void pb_raise();
-	void run_report();
+    void sales_report();
 	void execute_createnewpart(int cmd);
     void execute_createrobotmodel();
     void execute_showrobotmodels();
@@ -26,7 +26,7 @@ public:
 private:
 	Shoppe& shoppe;
 	View view;
-	//Customer customer;
+	
 };
 #endif
 #pragma once

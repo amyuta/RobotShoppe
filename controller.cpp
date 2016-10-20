@@ -95,7 +95,7 @@ void Controller:: execute_cmd(int cmd) {
         cin.ignore(); // consume \n
 
         if(cmd == 1){
-            cout << "\n";
+            cout << "\nSales Associate: \n";
             shoppe.list_sa();
             cout << "\n";
             execute_cmd(4);
@@ -103,6 +103,10 @@ void Controller:: execute_cmd(int cmd) {
         else if(cmd == 2){
             list_orders();
             
+        }
+        else if(cmd == 3){
+            
+            sales_report();
         }
         else if(cmd == 4){
             new_sa();
@@ -315,30 +319,34 @@ void Controller::execute_createrobotmodel(){
     cin >> model_num;
     cin.ignore();
 
-    view.list_parts();
     cout << "Chose a Head: \n";
     shoppe.list_parts(1);
+    cout << endl <<"Option?: ";
     cin >> part_type1;
     cin.ignore();
 
     cout << "\nChose an Arm: \n";
     shoppe.list_parts(2);
+    cout << endl <<"Option?: ";
     cin >> part_type2;
     cin.ignore();
 
     //Maybe ask, How many batteries.. instead?
     cout << "\nChose a Battery: \n";
     shoppe.list_parts(3);
+    cout << endl <<"Option?: ";
     cin >> part_type3;
     cin.ignore();
 
     cout << "\nChose a Locomotor: \n";
     shoppe.list_parts(4);
+    cout << endl <<"Option?: ";
     cin >> part_type4;
     cin.ignore();
 
     cout << "\nChose a Torso: \n";
     shoppe.list_parts(5);
+    cout << endl <<"Option?: ";
     cin >> part_type5;
     cin.ignore();
 
@@ -372,16 +380,16 @@ void Controller::new_customer(){
     string c_name;
     int c_num, sales_a;
 
-     cout << "Enter Customer Name: \n";
+     cout << "Enter Customer Name: ";
     getline(cin, c_name);
 
-    cout << "Enter Customer Number: \n";
+    cout << "Enter Customer Number: ";
     cin >> c_num;
     cin.ignore();
     
-    cout << "Choose a Sales Associate:\n";
+    cout << "\nChoose a Sales Associate:\n";
     shoppe.list_sa();
-    cout << "\nCommand? ";
+    cout << "\n\nOption? ";
     cin >> sales_a;
     cin.ignore();
 
@@ -408,8 +416,6 @@ void Controller::execute_showrobotmodels(){
     int cmd, num, sales_a, model;
     string name;
     
-    //Make output pretty... please..........
-    view.list_parts();
     shoppe.show_models();
     
     cout << "\n(1) Buy a Model\n";
@@ -422,22 +428,22 @@ void Controller::execute_showrobotmodels(){
         cin >> model;
         cin.ignore();
         
-        cout << "\nEnter your name: ";
+        cout << "Enter your name: ";
         getline(cin, name);
         
-        cout << "Enter your number:" ;
+        cout << "Enter your number: " ;
         cin >> num;
         cin.ignore();
         
-        cout << "Choose a Sales Associate:\n";
+        cout << "\nChoose a Sales Associate:\n";
         shoppe.list_sa();
-        cout << "\nCommand? ";
+        cout << "\n\nCommand? ";
         cin >> sales_a;
         cin.ignore();
         
         shoppe.add_customer( new Customer(name, num, sales_a-1));
         
-        cout << "Please wait for Sales Associate...\n\n";
+        cout << "\nPlease wait for Sales Associate...\n\n";
         view.show_samenu2();
         cout << "\nCommand? ";
         cin >> cmd;
@@ -460,13 +466,13 @@ void Controller::make_order(){
     string name;
     int num, sales_a, model, cmd;
     
+    cout << endl;
     shoppe.list_cust();
     
-    cout << "\n\nIs the Customer listed?" << endl << "(1) Yes" << endl << "(2) No" << endl << endl << "Command? ";
+    cout << "\nIs the Customer listed?\n" << endl << "(1) Yes" << endl << "(2) No" << endl << endl << "Command? ";
     cin >> cmd;
     
     if(cmd == 1){
-        view.list_parts();
         shoppe.show_models();
     
         cout<< "\nWhich Model is being purchased?: ";
@@ -476,7 +482,7 @@ void Controller::make_order(){
         cout << "\nEnter Customer's name: ";
         getline(cin, name);
     
-        cout << "Enter Customer's number:" ;
+        cout << "Enter Customer's number: " ;
         cin >> num;
         cin.ignore();
     
@@ -486,6 +492,7 @@ void Controller::make_order(){
         cin >> sales_a;
         cin.ignore();
     
+        cout << endl;
         place_order(model, name, num, sales_a-1);
     }
     else{
@@ -516,15 +523,16 @@ void Controller::show_order(){
     string name;
     int num, cmd, order;
     
-    cout<< "Enter your name: ";
+    cout<< "\nEnter your name: ";
     getline(cin, name);
     cout << "Enter your number: ";
     cin >> num;
     cin.ignore();
+    cout << endl;
     
     shoppe.show_orders(name, num);
     
-    cout << endl << "(1) Pay a bill" << "(2) Main Menu" << endl;
+    cout << endl << "(1) Pay a bill\n" << "(2) Main Menu" << endl << endl << "Command? ";
     cin >> cmd;
     cin.ignore();
     
@@ -546,9 +554,9 @@ void Controller::list_orders(){
     
     int sales_a;
     
-    cout << "Choose a Sales Associate:\n";
+    cout << "\nChoose a Sales Associate:\n";
     shoppe.list_sa();
-    cout << "\nCommand? ";
+    cout << "\n\nOption? ";
     cin >> sales_a;
     cin.ignore();
     
@@ -559,7 +567,7 @@ void Controller::sa_raise(){
     
     int sales_a;
     
-    cout << "Choose a Sales Associate:\n";
+    cout << "\nChoose a Sales Associate:\n";
     shoppe.list_sa();
     cout << "\nCommand? ";
     cin >> sales_a;
@@ -573,15 +581,32 @@ void Controller::pb_raise(){
     
     int sales_a;
     
-    cout << "Look at Sales Report for Justification\n\n";
+    cout << "\nLook at Sales Report for Justification\n";
     cout << "Choose a Sales Associate:\n";
     shoppe.list_sa();
-    cout << "\nCommand? ";
+    cout << "\nOption? ";
     cin >> sales_a;
     cin.ignore();
     
     shoppe.pb_raise(sales_a-1);
+    
+    cout << "Raise Given to Sales Associate";
 
+}
+
+void Controller::sales_report(){
+    
+    int sales_a;
+    
+    cout << "\nChoose a Sales Associate:\n";
+    shoppe.list_sa();
+    cout << "\n\nOption? ";
+    cin >> sales_a;
+    cin.ignore();
+    
+    shoppe.paid_orders(sales_a-1);
+    
+    
 }
 
 void Controller::load_data() { //load saved data
@@ -801,10 +826,10 @@ void Controller::load_data() { //load saved data
         i++;
     }
     
+    /*
     i = 0;
     int o_num, o_model, oc_num, o_sales;
     string o_name;
-    getline(ifs, temp);
     numcount = stoi(temp);
     
     while (i < numcount) {
@@ -821,6 +846,7 @@ void Controller::load_data() { //load saved data
         i++;
         
     }
+     */
 
 
 }
